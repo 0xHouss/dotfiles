@@ -59,4 +59,4 @@ alias l="eza --color=always --long --git --icons=always"
 alias tree="eza --tree --icons=always"
 # aliases end
 
-export PATH="/opt/yazi/target/release:$PATH"
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
