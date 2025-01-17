@@ -58,6 +58,7 @@ alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time
 alias l="eza --color=always --long --git --icons=always"
 alias tree="eza --tree --icons=always"
 alias up="sudo apt-get update -y && sudo apt-get upgrade -y"
+alias fman="compgen -c | fzf | xargs man"
 # aliases end
 
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
