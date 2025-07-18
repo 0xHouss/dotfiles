@@ -136,6 +136,7 @@ alias tree="eza --tree --icons=always"
 alias up="sudo apt-get update -y && sudo apt-get upgrade -y"
 alias fman="compgen -c | fzf | xargs man"
 alias yay="yay --noconfirm"
+alias stow="stow -t ~"
 # aliases end
 
 # pnpm
