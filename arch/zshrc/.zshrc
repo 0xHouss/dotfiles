@@ -137,6 +137,8 @@ alias up="sudo apt-get update -y && sudo apt-get upgrade -y"
 alias fman="compgen -c | fzf | xargs man"
 alias yay="yay --noconfirm"
 alias stow="stow -t ~"
+alias resource="source ~/.zshrc"
+alias vh="nvim ."
 # aliases end
 
 # pnpm
@@ -156,3 +158,6 @@ esac
 # else
 #     pkill wofi
 # fi
+
+# Created by `pipx` on 2025-07-18 19:46:11
+export PATH="$PATH:/home/houss/.local/bin"
