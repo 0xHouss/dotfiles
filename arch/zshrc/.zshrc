@@ -161,5 +161,3 @@ esac
 
 # Created by `pipx` on 2025-07-18 19:46:11
 export PATH="$PATH:/home/houss/.local/bin"
-
-neofetch
