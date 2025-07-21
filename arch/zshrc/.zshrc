@@ -129,15 +129,15 @@ _fzf_comprun() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # aliases
-alias bat="batcat"
 alias ls="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
 alias l="eza --color=always --long --git --icons=always"
 alias tree="eza --tree --icons=always"
-alias up="sudo apt-get update -y && sudo apt-get upgrade -y"
+alias upup="yay -Syu --noconfirm && sudo pacman -Sc --noconfirm && yay -Sc --noconfirm"
 alias fman="compgen -c | fzf | xargs man"
-alias yay="yay --noconfirm"
+alias yayy="yay --noconfirm"
 alias stow="stow -t ~"
 alias resource="source ~/.zshrc"
+alias vim="nvim"
 alias vh="nvim ."
 # aliases end
 
