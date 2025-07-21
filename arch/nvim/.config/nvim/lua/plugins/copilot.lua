@@ -3,6 +3,7 @@ return {
   event = "InsertEnter",
   opts = {
     suggestion = {
+      debug = false,
       enabled = true,
       auto_trigger = true, -- 👈 enables suggestions as you type
       keymap = {
