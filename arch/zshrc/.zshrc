@@ -137,7 +137,7 @@ alias fman="compgen -c | fzf | xargs man"
 alias yayy="yay --noconfirm"
 alias stow="stow -t ~"
 alias resource="source ~/.zshrc"
-alias vim="nvim"
+alias v="nvim"
 alias vh="nvim ."
 # aliases end
 
@@ -162,3 +162,5 @@ esac
 # Created by `pipx` on 2025-07-18 19:46:11
 export PATH="$PATH:/home/houss/.local/bin"
 export MANPAGER="nvim +Man!"
+
+export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
