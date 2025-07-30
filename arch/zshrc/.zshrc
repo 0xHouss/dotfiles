@@ -70,7 +70,11 @@ ZSH_THEME="bira"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  zsh-autosuggestions
+  # zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,6 +116,11 @@ _fzf_comprun() {
 }
 # fzf end
 
+# tmuxifier
+export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
+
+eval "$(tmuxifier init -)"
+# tmuxifier end
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -139,6 +148,12 @@ alias stow="stow -t ~"
 alias resource="source ~/.zshrc"
 alias v="nvim"
 alias vh="nvim ."
+alias vmux="tmuxifier load-session vmux"
+alias t="tmux"
+alias tl="tmux ls"
+alias ta="tmux attach"
+alias gc="git clone"
+alias y="yazi"
 # aliases end
 
 # pnpm
