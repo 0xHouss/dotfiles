@@ -1,7 +1,4 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
-
+-- yanking
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to system clipboard" })
 
 vim.keymap.set("n", "yA", function()
@@ -15,3 +12,6 @@ vim.keymap.set("n", "<leader>yA", function()
   vim.cmd('normal! gg"+yG') -- yank whole file to clipboard
   vim.api.nvim_win_set_cursor(0, pos) -- restore cursor position
 end, { noremap = true, silent = true, desc = "Yank entire file to system clipboard" })
+
+-- lua
+vim.keymap.set("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute current lua file" })
