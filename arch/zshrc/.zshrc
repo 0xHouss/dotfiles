@@ -152,7 +152,6 @@ alias vmux="tmuxifier load-session vmux"
 alias t="tmux"
 alias tl="tmux ls"
 alias ta="tmux attach"
-alias gc="git clone"
 alias y="yazi"
 # aliases end
 
