@@ -35,8 +35,8 @@ zinit snippet OMZP::copypath
 zinit snippet OMZP::copyfile
 zinit snippet OMZP::dirhistory
 zinit snippet OMZP::command-not-found
+zinit snippet OMZP::archlinux
 
-# zinit snippet OMZP::archlinux
 # zinit snippet OMZL::git.zsh
 # zinit snippet OMZP::git
 
@@ -64,26 +64,32 @@ setopt hist_find_no_dups
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --icons=always --no-filesize --no-time --no-user --no-permissions -l $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'eza --color=always --icons=always --no-filesize --no-time --no-user --no-permissions -l $realpath'
+zstyle ':fzf-tab:complete:tssh:*' fzf-flags '--height=5'
+zstyle ':fzf-tab:complete:tssh:*' fzf-preview \
+'tssh --list-hosts | jq -r --arg alias "$word" ".[] | select(.Alias == \$alias) | \"Host: \(.Host)\nPort: \(.Port)\nUser: \(.User)\""'
+
 
 # Aliases
 alias ls="eza --color=always --long --icons=always --no-filesize --no-time --no-user --no-permissions"
 alias lsa="eza --color=always --long --icons=always --no-filesize --no-time --no-user --no-permissions --all"
 alias l="eza --color=always --long --git --icons=always"
 alias la="eza --color=always --long --git --icons=always --all"
-
 alias lt="eza --tree --icons=always"
 alias lta="eza --tree --icons=always --all"
 
 alias upup="yay -Syu --noconfirm && sudo pacman -Sc --noconfirm && yay -Sc --noconfirm"
-alias fman="compgen -c | fzf | xargs man"
 alias yayy="yay --noconfirm"
+
+alias fman="compgen -c | fzf | xargs man"
 alias stow="stow -t ~"
 alias resource="source ~/.zshrc"
+
 alias v="nvim"
 alias vh="nvim ."
 alias vmux="tmuxifier load-session vmux"
+
 alias t="tmux"
 alias tl="tmux ls"
 alias ta="tmux attach"
@@ -91,8 +97,9 @@ alias y="yazi"
 alias z="zoxide"
 
 # Environment variables
-export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PNPM_HOME="$HOME/.local/share/pnpm"
+
+export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PNPM_HOME:$PATH"
 export PATH="$PATH:$HOME/.local/bin"
 
@@ -111,3 +118,28 @@ fi
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# fzf
+export FZF_CTRL_T_OPTS="--preview 'if [ -d {} ]; then eza --tree --color=always --level=4 {}; else bat --style=numbers --color=always {}; fi'"
+export FZF_ALT_C_OPTS="--preview 'eza --tree --color=always --icons=always {}'"
+# fzf end
+
+# tssh
+tssh() {
+  if [[ "$1" == "-n" ]]; then # custom flag for new host
+    shift
+    command tssh --new-host "$@"
+  else
+    command tssh "$@"
+  fi
+}
+
+_tssh_completions() {
+  local -a items
+  items=($(tssh --list-hosts | jq -r '.[].Alias'))
+
+  compadd -- "$@" "${items[@]}"
+}
+
+compdef _tssh_completions tssh # Add tssh completions
+# tssh end
