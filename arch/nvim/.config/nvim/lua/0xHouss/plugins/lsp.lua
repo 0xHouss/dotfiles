@@ -13,27 +13,26 @@ return {
   },
 
   {
-    "williamboman/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = {
-        "lua_ls",
-        "ts_ls",
-        "tailwindcss",
-        "cssls",
-        "html",
-        "emmet_ls",
-        "prismals",
-        "pyright"
-      },
-
-      automatic_installation = true
-    }
-  },
-
-  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      {
+        "williamboman/mason-lspconfig.nvim",
+        opts = {
+          ensure_installed = {
+            "lua_ls",
+            "ts_ls",
+            "tailwindcss",
+            "cssls",
+            "html",
+            "emmet_ls",
+            "prismals",
+            "pyright"
+          },
+          automatic_installation = true
+        }
+      },
+
       {
         "folke/lazydev.nvim",
         ft = "lua",
@@ -44,6 +43,7 @@ return {
           }
         }
       },
+
       'saghen/blink.cmp'
     },
 
