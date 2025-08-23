@@ -14,6 +14,7 @@ return {
         "diff",
         "html",
         "javascript",
+        "css",
         "jsdoc",
         "json",
         "jsonc",
@@ -29,6 +30,7 @@ return {
         "toml",
         "tsx",
         "typescript",
+        "prisma",
         "vim",
         "vimdoc",
         "xml",
@@ -110,6 +112,11 @@ return {
         end
       end
     end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "BufReadPost",
   },
 
   {
