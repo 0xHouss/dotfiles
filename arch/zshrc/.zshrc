@@ -98,9 +98,14 @@ alias z="zoxide"
 
 # Environment variables
 export PNPM_HOME="$HOME/.local/share/pnpm"
+export ANDROID_HOME="/opt/android-sdk"
 
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$PNPM_HOME:$PATH"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_HOME/tools/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 # Shell integrations
