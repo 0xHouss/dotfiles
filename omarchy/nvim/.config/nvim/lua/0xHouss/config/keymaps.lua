@@ -93,6 +93,7 @@ map("n", "<C-W>x", "<C-W>c", { desc = "Delete Window", remap = true })
 
 -- yanking
 map({ "n", "v" }, "<leader>y", "\"+y", { noremap = true, silent = true, desc = "Yank to System Clipboard" })
+map({ "n", "v" }, "<leader>Y", "\"+y$", { noremap = true, silent = true, desc = "Yank end of line to System Clipboard" })
 
 map("n", "yA", function()
   local pos = vim.api.nvim_win_get_cursor(0) -- save current cursor position
