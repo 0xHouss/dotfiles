@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# === Dependencies ===
+for cmd in yt-dlp ffmpeg jq gum; do
+  if ! command -v "$cmd" >/dev/null 2>&1; then
+    echo "❌ $cmd is not installed. Please install it."
+    exit 1
+  fi
+done
+
+# === Parse args ===
+URL="$1"
+CHOICE="$2"
+
+# === If no URL passed, ask with gum ===
+if [ -z "$URL" ]; then
+  URL=$(gum input --placeholder "Enter YouTube or Playlist URL")
+fi
+
+# === Validate URL ===
+if [[ -z "$URL" ]] || [[ ! "$URL" =~ ^https?://(www\.)?(youtube\.com|youtu\.be)/.+$ ]]; then
+  gum style --foreground 196 "❌ Invalid or missing YouTube URL."
+  exit 1
+fi
+
+# === If no type passed, ask with gum ===
+if [ -z "$CHOICE" ]; then
+  CHOICE=$(gum choose "audio" "video")
+fi
+
+# Normalize choice
+CHOICE=$(echo "$CHOICE" | tr '[:upper:]' '[:lower:]')
+
+# === Detect if URL is a playlist or single video ===
+IS_PLAYLIST=false
+if yt-dlp --flat-playlist -J "$URL" | jq -e '.entries' >/dev/null 2>&1; then
+  IS_PLAYLIST=true
+fi
+
+# === Set output directory and format ===
+if [ "$CHOICE" == "audio" ]; then
+  FORMAT="-x --audio-format mp3"
+  BASEDIR="$HOME/Music"
+elif [ "$CHOICE" == "video" ]; then
+  FORMAT="--recode-video mp4"
+  BASEDIR="$HOME/Videos"
+else
+  gum style --foreground 196 "❌ Invalid choice: must be 'audio' or 'video'."
+  exit 1
+fi
+
+if [ "$IS_PLAYLIST" == true ]; then
+  OUTDIR="$BASEDIR/%(playlist_title)s/%(playlist_index)02d - %(title)s.%(ext)s"
+else
+  OUTDIR="$BASEDIR/%(title)s.%(ext)s"
+fi
+
+# === Run download ===
+yt-dlp $FORMAT -o "$OUTDIR" "$URL"
