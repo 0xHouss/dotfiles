@@ -1,0 +1,19 @@
+#!/bin/bash
+# Minimal replacement for the classic on_ac_power command
+
+# Find the battery device (usually BAT0)
+BATTERY=$(upower -e | grep -m1 BAT)
+
+# If no battery found, assume we're plugged in
+[ -z "$BATTERY" ] && exit 0
+
+# Query battery state
+STATE=$(upower -i "$BATTERY" | awk '/state:/ {print $2}')
+
+# Exit codes mimic the original behavior:
+# 0 = on AC power, 1 = on battery
+if [ "$STATE" = "discharging" ]; then
+    exit 1
+else
+    exit 0
+fi
