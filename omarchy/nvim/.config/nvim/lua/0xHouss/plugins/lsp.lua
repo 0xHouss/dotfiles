@@ -135,7 +135,8 @@ return {
           },
         },
         tailwindcss = {},
-        pyright = {}
+        pyright = {},
+        jdtls = {},
       }
     },
     config = function(_, opts)
@@ -144,6 +145,7 @@ return {
         -- `opts[server].capabilities, if you've defined it
         config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
         vim.lsp.config(server, config)
+        vim.lsp.enable(server)
       end
 
       vim.diagnostic.config({
