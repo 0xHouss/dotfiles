@@ -16,7 +16,10 @@ alias ta="tmux attach"
 alias y="yazi"
 alias n="nvim"
 
-. "$HOME/.local/share/../bin/env"
+alias dot="cd ~/dotfiles/omarchy/"
+alias om="cd ~/.local/share/omarchy/"
+alias obs="cd ~/Vaults/Second\ Brain/"
+
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="/usr/bin/core_perl:$PATH"
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
