@@ -6,18 +6,28 @@
 status="$(cat /sys/class/power_supply/BAT0/status)"
 level="$(cat /sys/class/power_supply/BAT0/capacity)"
 
-if [[ ("$status" == "Discharging") || ("$status" == "Full") ]]; then
-  if [[ "$level" -eq "0" ]]; then
-    printf " "
-  elif [[ ("$level" -ge "0") && ("$level" -le "25") ]]; then
-    printf " "
-  elif [[ ("$level" -ge "25") && ("$level" -le "50") ]]; then
-    printf " "
-  elif [[ ("$level" -ge "50") && ("$level" -le "75") ]]; then
-    printf " "
-  elif [[ ("$level" -ge "75") && ("$level" -le "100") ]]; then
-    printf " "
-  fi
-elif [[ "$status" == "Charging" ]]; then
-  printf " "
-fi
+# Define icons (10 levels)
+icons_discharging=(󰁺 󰁻 󰁼 󰁽 󰁾 󰁿 󰂀 󰂁 󰂂 󰁹)
+icons_charging=(󰢜 󰂆 󰂇 󰂈 󰢝 󰂉 󰢞 󰂊 󰂋 󰂅)
+
+# Determine index based on level (0–9)
+index=$((level / 10))
+if [ "$index" -gt 9 ]; then index=9; fi
+
+case "$status" in
+  "Charging")
+    printf "%s\n" "${icons_charging[$index]}"
+    ;;
+  "Discharging")
+    printf "%s\n" "${icons_discharging[$index]}"
+    ;;
+  "Full")
+    printf "󰂅\n"
+    ;;
+  "Not charging"|"Unknown")
+    printf "\n"
+    ;;
+  *)
+    printf "\n"
+    ;;
+esac
