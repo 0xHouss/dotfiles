@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
 # All the default Omarchy aliases and functions
 # (don't mess with these directly, just overwrite them here!)
 source ~/.local/share/omarchy/default/bash/rc
@@ -33,9 +36,17 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-PATH="/home/houss/perl5/bin${PATH:+:${PATH}}"; export PATH;
-PERL5LIB="/home/houss/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/houss/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/houss/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/houss/perl5"; export PERL_MM_OPT;
-OMARCHY_SCREENSHOT_DIR="$HOME/Pictures/Screenshots";
+# Preferred editor for local and remote sessions
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+# Environment variables
+export PATH="/home/houss/perl5/bin${PATH:+:${PATH}}";
+export PERL5LIB="/home/houss/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
+export PERL_LOCAL_LIB_ROOT="/home/houss/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
+export PERL_MB_OPT="--install_base \"/home/houss/perl5\"";
+export PERL_MM_OPT="INSTALL_BASE=/home/houss/perl5";
+export OMARCHY_SCREENSHOT_DIR="$HOME/Pictures/Screenshots";
