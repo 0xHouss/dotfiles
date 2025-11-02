@@ -6,9 +6,6 @@
 source ~/.local/share/omarchy/default/bash/rc
 
 # Add your own exports, aliases, and functions here.
-#
-# Make an alias for invoking commands you use constantly
-# alias p='python'
 alias resource="source ~/.bashrc"
 alias fman="compgen -c | fzf | xargs man"
 alias stow="stow -t ~"
@@ -18,15 +15,11 @@ alias tl="tmux ls"
 alias ta="tmux attach"
 alias y="yazi"
 alias n="nvim"
+alias lg="lazygit"
 
 alias dot="cd ~/dotfiles/omarchy/"
 alias om="cd ~/.local/share/omarchy/"
 alias obs="cd ~/Vaults/Second\ Brain/"
-
-export PATH="$HOME/.config/composer/vendor/bin:$PATH"
-export PATH="/usr/bin/core_perl:$PATH"
-export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
-
 
 # pnpm
 export PNPM_HOME="/home/houss/.local/share/pnpm"
@@ -45,6 +38,9 @@ fi
 
 # Environment variables
 export PATH="/home/houss/perl5/bin${PATH:+:${PATH}}";
+export PATH="/usr/bin/core_perl:$PATH"
+export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PERL5LIB="/home/houss/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
 export PERL_LOCAL_LIB_ROOT="/home/houss/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
 export PERL_MB_OPT="--install_base \"/home/houss/perl5\"";
