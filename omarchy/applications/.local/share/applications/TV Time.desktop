@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=TV Time
+Comment=TV Time
+Exec=omarchy-launch-webapp https://app.tvtime.com/shows/watchlist
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/TV Time.png
+StartupNotify=true
