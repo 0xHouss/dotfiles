@@ -135,6 +135,15 @@ return {
           },
         },
         tailwindcss = {},
+        prismals = {
+          settings = {
+            prisma = {
+              prismaFmtBinPath = "", -- optional, path to custom prisma-fmt binary
+            },
+          },
+          filetypes = { "prisma" },
+        },
+        clangd = {},
         pyright = {},
         jdtls = {},
       }

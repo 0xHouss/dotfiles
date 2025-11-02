@@ -14,6 +14,7 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "bash",
+        "latex",
         "c",
         "diff",
         "html",

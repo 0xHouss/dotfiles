@@ -1,1 +1,1 @@
-require("0xHouss")
+require("config")
