@@ -35,6 +35,7 @@ return {
     },
     indent = { enabled = true },
     input = { enabled = true },
+    scratch = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 3000,
@@ -59,13 +60,15 @@ return {
     words = { enabled = true },
   },
   keys = {
+
     -- Top Pickers & Explorer
     { "<leader><space>", function() Snacks.picker.files() end,                                                  desc = "Find Files" },
     { "<leader>,",       function() Snacks.picker.buffers() end,                                                desc = "Buffers" },
     { "<leader>/",       function() Snacks.picker.grep() end,                                                   desc = "Grep" },
     { "<leader>:",       function() Snacks.picker.command_history() end,                                        desc = "Command History" },
     { "<leader>n",       function() Snacks.picker.notifications() end,                                          desc = "Notification History" },
-    -- { "<leader>e",       function() Snacks.explorer() end,                                                      desc = "File Explorer" },
+    { "<leader>e",       function() Snacks.explorer() end,                                                      desc = "File Explorer" },
+
     -- find
     { "<leader>fb",      function() Snacks.picker.buffers() end,                                                desc = "Buffers" },
     { "<leader>fc",      function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,                desc = "Find Config File" },
@@ -83,11 +86,15 @@ return {
     { "<leader>gd",      function() Snacks.picker.git_diff() end,                                               desc = "Git Diff (Hunks)" },
     { "<leader>gf",      function() Snacks.picker.git_log_file() end,                                           desc = "Git Log File" },
 
-    -- Grep
+    -- grep
     { "<leader>sb",      function() Snacks.picker.lines() end,                                                  desc = "Buffer Lines" },
     { "<leader>sB",      function() Snacks.picker.grep_buffers() end,                                           desc = "Grep Open Buffers" },
     { "<leader>sg",      function() Snacks.picker.grep() end,                                                   desc = "Grep" },
     { "<leader>sw",      function() Snacks.picker.grep_word() end,                                              desc = "Visual selection or word", mode = { "n", "x" } },
+
+    -- scratch
+    { "<leader>S",       function() Snacks.scratch() end,                                         desc = "Toggle Scratch Buffer" },
+    { "<leader>X",       function() Snacks.scratch.select() end,                                         desc = "Select Scratch Buffer" },
 
     -- search
     { '<leader>s"',      function() Snacks.picker.registers() end,                                              desc = "Registers" },
@@ -112,7 +119,7 @@ return {
     { "<leader>su",      function() Snacks.picker.undo() end,                                                   desc = "Undo History" },
     { "<leader>uC",      function() Snacks.picker.colorschemes() end,                                           desc = "Colorschemes" },
 
-    -- LSP
+    -- lsp
     { "gd",              function() Snacks.picker.lsp_definitions() end,                                        desc = "Goto Definition" },
     { "gD",              function() Snacks.picker.lsp_declarations() end,                                       desc = "Goto Declaration" },
     { "gr",              function() Snacks.picker.lsp_references() end,                                         nowait = true,                     desc = "References" },
