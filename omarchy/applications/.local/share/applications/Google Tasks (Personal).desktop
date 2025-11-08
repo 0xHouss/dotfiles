@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Google Tasks (Personal)
+Comment=Google Tasks (Personal)
+Exec=omarchy-launch-webapp https://tasks.google.com/u/0/tasks/
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Google Tasks.png
+StartupNotify=true
