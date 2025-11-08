@@ -1,0 +1,26 @@
+#!/bin/bash
+# Usage: crun file.c [args...]
+
+# Exit on error
+set -e
+
+# Check arguments
+if [ $# -lt 1 ]; then
+  echo "Usage: crun <file.c> [args...]"
+  exit 1
+fi
+
+SRC="$1"
+OUT="${SRC%.c}"
+
+# Remove the first argument so "$@" now contains only program args
+shift
+
+# Compile with libstack
+gcc "$SRC" -o "$OUT" -g -s
+
+# Run the program with forwarded arguments
+./"$OUT" "$@"
+
+# Clean up
+rm "$OUT"
