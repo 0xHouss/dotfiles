@@ -2,7 +2,7 @@
 Version=1.0
 Name=Phone
 Comment=Phone
-Exec=$TERMINAL --class=TUI.float -e adb connect 192.168.1.65 && scrcpy --turn-screen-off --stay-awake &
+Exec=$TERMINAL --class=TUI.float -e adb connect 192.168.1.112 && scrcpy --turn-screen-off --stay-awake &
 Terminal=false
 Type=Application
 Icon=/home/houss/.local/share/applications/icons/Phone.png
