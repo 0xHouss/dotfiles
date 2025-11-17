@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Leetcode
+Comment=Leetcode
+Exec=omarchy-launch-webapp https://leetcode.com/problemset
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Leetcode.png
+StartupNotify=true
