@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Pomodoro
+Comment=Pomodoro
+Exec=omarchy-launch-webapp https://pomofocus.io/
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Pomodoro.png
+StartupNotify=true

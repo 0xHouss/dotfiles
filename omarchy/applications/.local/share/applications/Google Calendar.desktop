@@ -2,7 +2,7 @@
 Version=1.0
 Name=Google Calendar
 Comment=Google Calendar
-Exec=omarchy-launch-webapp https://calendar.google.com/
+Exec=omarchy-launch-webapp https://calendar.google.com/calendar/u/2/
 Terminal=false
 Type=Application
 Icon=/home/houss/.local/share/applications/icons/Google Calendar.png
