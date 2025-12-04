@@ -146,6 +146,13 @@ return {
         clangd = {},
         pyright = {},
         jdtls = {},
+        tinymist = {
+          settings = {
+            formatterMode = "typstyle",
+            exportPdf = "onSave",
+            semanticTokens = "disable"
+          }
+        },
       }
     },
     config = function(_, opts)
