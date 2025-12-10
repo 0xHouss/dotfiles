@@ -47,3 +47,6 @@ export PERL_MB_OPT="--install_base \"/home/houss/perl5\"";
 export PERL_MM_OPT="INSTALL_BASE=/home/houss/perl5";
 export OMARCHY_SCREENSHOT_DIR="$HOME/Pictures/Screenshots";
 export MANPAGER="nvim +Man!"
+
+# deno env
+. "/home/houss/.deno/env"
