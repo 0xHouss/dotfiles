@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Excalidraw
+Comment=Excalidraw
+Exec=omarchy-launch-webapp https://excalidraw.com/
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Excalidraw.png
+StartupNotify=true
