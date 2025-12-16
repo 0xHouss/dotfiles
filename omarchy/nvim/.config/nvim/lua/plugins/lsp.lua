@@ -7,9 +7,9 @@ return {
       {
         "<leader>m",
         "<cmd>Mason<CR>",
-        desc = "Mason"
-      }
-    }
+        desc = "Mason",
+      },
+    },
   },
 
   {
@@ -18,6 +18,9 @@ return {
     dependencies = {
       {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = {
+          { "mfussenegger/nvim-jdtls" },
+        },
         opts = {
           ensure_installed = {
             "lua_ls",
@@ -27,11 +30,16 @@ return {
             "html",
             "emmet_ls",
             "prismals",
-            "pyright"
+            "pyright",
           },
           automatic_installation = true,
-          automatic_enable = false,
-        }
+          automatic_enable = {
+            exclude = {
+              "jdtls",
+              "vtsls",
+            },
+          },
+        },
       },
 
       {
@@ -40,17 +48,30 @@ return {
         opts = {
           library = {
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            { path = "snacks.nvim",        words = { "Snacks" } },
-          }
-        }
+            { path = "snacks.nvim", words = { "Snacks" } },
+          },
+        },
       },
 
-      'saghen/blink.cmp'
+      "saghen/blink.cmp",
     },
 
     keys = {
-      { "<leader>cr", function() vim.lsp.buf.rename() end,      desc = "Rename" },
-      { "<leader>ca", function() vim.lsp.buf.code_action() end, desc = "Code Action", mode = { "n", "v" } },
+      {
+        "<leader>cr",
+        function()
+          vim.lsp.buf.rename()
+        end,
+        desc = "Rename",
+      },
+      {
+        "<leader>ca",
+        function()
+          vim.lsp.buf.code_action()
+        end,
+        desc = "Code Action",
+        mode = { "n", "v" },
+      },
     },
     opts = {
       servers = {
@@ -134,7 +155,6 @@ return {
             },
           },
         },
-        tailwindcss = {},
         prismals = {
           settings = {
             prisma = {
@@ -143,23 +163,20 @@ return {
           },
           filetypes = { "prisma" },
         },
-        clangd = {},
-        pyright = {},
-        jdtls = {},
         tinymist = {
           settings = {
             formatterMode = "typstyle",
             exportPdf = "onSave",
-            semanticTokens = "disable"
-          }
+            semanticTokens = "disable",
+          },
         },
-      }
+      },
     },
     config = function(_, opts)
       for server, config in pairs(opts.servers) do
         -- passing config.capabilities to blink.cmp merges with the capabilities in your
         -- `opts[server].capabilities, if you've defined it
-        config.capabilities = require('blink.cmp').get_lsp_capabilities(config.capabilities)
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         vim.lsp.config(server, config)
         vim.lsp.enable(server)
       end
@@ -171,6 +188,6 @@ return {
         update_in_insert = false,
         severity_sort = true,
       })
-    end
-  }
+    end,
+  },
 }

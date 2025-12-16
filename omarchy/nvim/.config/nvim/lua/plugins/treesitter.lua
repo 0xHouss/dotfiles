@@ -4,7 +4,7 @@ return {
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    main = 'nvim-treesitter.configs',
+    main = "nvim-treesitter.configs",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-context",
@@ -19,6 +19,7 @@ return {
         "diff",
         "html",
         "javascript",
+        "java",
         "css",
         "jsdoc",
         "json",
@@ -28,8 +29,6 @@ return {
         "luap",
         "markdown",
         "markdown_inline",
-        "printf",
-        "python",
         "query",
         "regex",
         "toml",
@@ -85,10 +84,10 @@ return {
             ["ic"] = { query = "@class.inner", desc = "Select inside class" },
             ["aa"] = { query = "@parameter.outer", desc = "Select around parameter" },
             ["ia"] = { query = "@parameter.inner", desc = "Select inside parameter" },
-          }
-        }
-      }
-    }
+          },
+        },
+      },
+    },
   },
 
   {
