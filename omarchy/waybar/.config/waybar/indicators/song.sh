@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Max length for title and artist
-MAX_LEN=25
+MAX_LEN=20
 
 player_name=$(playerctl metadata --format '{{playerName}}' 2>/dev/null)
 player_status=$(playerctl status 2>/dev/null)
