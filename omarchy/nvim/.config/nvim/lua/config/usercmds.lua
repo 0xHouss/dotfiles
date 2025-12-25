@@ -1,9 +1,5 @@
--- Open typst files directly
-vim.api.nvim_create_user_command("OpenPdf", function()
-    local filepath = vim.api.nvim_buf_get_name(0)
-
-    if filepath:match("%.typ$") then
-        local pdf_path = filepath:gsub("%.typ$", ".pdf")
-        vim.system({ "open", pdf_path })
-    end
+vim.api.nvim_create_user_command("PandocPDF", function()
+  local input = vim.fn.expand("%")
+  local output = vim.fn.expand("%:r") .. ".pdf"
+  vim.cmd('silent !pandoc "' .. input .. '" -o "' .. output .. '"')
 end, {})
