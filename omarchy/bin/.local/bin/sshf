@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+set -e
+
+hosts=$(
+  awk '
+    $1 == "Host" {
+      for (i = 2; i <= NF; i++) {
+        if ($i !~ /[*?]/) print $i
+      }
+    }
+  ' ~/.ssh/config ~/.ssh/config.d/*.conf 2>/dev/null \
+  | sort -u
+)
+
+host=$(
+  echo "$hosts" | fzf \
+    --prompt="SSH > " \
+    --preview '
+      ssh -G {} | awk "
+        /^user /        {print \"User:        \" \$2}
+        /^hostname /    {print \"HostName:    \" \$2}
+        /^port /        {print \"Port:        \" \$2}
+        /^identityfile /{print \"Key:         \" \$2}
+        /^proxyjump /   {print \"ProxyJump:   \" \$2}
+      "
+    ' \
+    --preview-window=right:40%
+)
+
+[ -n "$host" ] && exec ssh "$host"
