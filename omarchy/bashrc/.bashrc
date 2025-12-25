@@ -13,7 +13,6 @@ alias vmux="tmuxifier load-session vmux"
 alias t="tmux"
 alias tl="tmux ls"
 alias ta="tmux attach"
-alias y="yazi"
 alias n="nvim"
 alias lg="lazygit"
 
@@ -28,6 +27,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# yazi
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
+# yazi end
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
