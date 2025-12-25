@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Wiremix
+Comment=Wiremix
+Exec=omarchy-launch-or-focus-tui wiremix
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Wiremix.png
+StartupNotify=true
