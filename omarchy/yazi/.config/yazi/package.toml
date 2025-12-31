@@ -1,0 +1,37 @@
+[[plugin.deps]]
+use = "yazi-rs/plugins:mount"
+rev = "7ca66b4"
+hash = "4fccaaf10c36dc2466e2438a386ff017"
+
+[[plugin.deps]]
+use = "grappas/wl-clipboard"
+rev = "e9a38e4"
+hash = "6b8e5d6b09626facec713923d3ddb54b"
+
+[[plugin.deps]]
+use = "boydaihungst/gvfs"
+rev = "c12e716"
+hash = "93c6319d64753867d9904418664ba555"
+
+[[plugin.deps]]
+use = "uhs-robert/recycle-bin"
+rev = "53ad17c"
+hash = "80221fe740a6f251d35845d29391bea7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:types"
+rev = "7ca66b4"
+hash = "1e047e1b13b5e3fc6ab1f5d0d04a14e2"
+
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "a90fc71"
+hash = "894e801b788d0fca94627b58f8c9e1d4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "7ca66b4"
+hash = "5b2eb0cc2050cec1e4de83cfa51a5b90"
+
+[flavor]
+deps = []
