@@ -1,0 +1,99 @@
+# A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+[mgr]
+prepend_keymap = [
+  # Undo
+  { on = "u", run = "plugin undo", desc = "Undo last operation" },
+
+  # Jumplist
+  { on = [
+    "<C-o>",
+  ], run = "plugin jumplist -- --direction=back", desc = "Go back in jumplist" },
+  { on = [
+    "<C-i>",
+  ], run = "plugin jumplist -- --direction=forward", desc = "Go forward in jumplist" },
+  # Alternative keys for jumplist
+  { on = [
+    "<A-left>",
+  ], run = "plugin jumplist -- --direction=back", desc = "Go back in jumplist" },
+  { on = [
+    "<A-right>",
+  ], run = "plugin jumplist -- --direction=forward", desc = "Go forward in jumplist" },
+
+
+  # Chmod
+  { on = [
+    "c",
+    "m",
+  ], run = "plugin chmod", desc = "Chmod on selected files" },
+
+  # LazyGit
+  { on = [
+    "g",
+    "l",
+  ], run = "plugin lazygit", desc = "run lazygit" },
+
+  # Bookmarks
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Pictures", desc = "Go ~/Pictures" },
+  { on = [
+    "g",
+    "v",
+  ], run = "cd ~/Videos", desc = "Go ~/Videos" },
+  { on = [
+    "g",
+    "D",
+  ], run = "cd ~/Documents", desc = "Go ~/Documents" },
+
+  # Recycle Bin
+  { on = [
+    "R",
+    "o",
+  ], run = "plugin recycle-bin -- open", desc = "Open Trash" },
+  { on = [
+    "R",
+    "e",
+  ], run = "plugin recycle-bin -- empty", desc = "Empty Trash" },
+  { on = [
+    "R",
+    "d",
+  ], run = "plugin recycle-bin -- delete", desc = "Delete from Trash" },
+  { on = [
+    "R",
+    "r",
+  ], run = "plugin recycle-bin -- restore", desc = "Restore from Trash" },
+
+  # System Clipboard
+  { on = "<C-y>", run = "plugin wl-clipboard", desc = "Copy to system clipboard" },
+
+  # GVFS Device Management
+
+  # Mount
+  { on = [
+    "M",
+    "m",
+  ], run = "plugin gvfs -- select-then-mount --jump", desc = "Select device to mount and jump to its mount point" },
+
+  # Unmount
+  { on = [
+    "M",
+    "u",
+  ], run = "plugin gvfs -- select-then-unmount", desc = "Select device then unmount" },
+
+  # Remove a Scheme/Mount URI
+  #   -> Will clear saved passwords for that mount URI.
+  { on = [
+    "M",
+    "r",
+  ], run = "plugin gvfs -- remove-mount", desc = "Remove a GVFS mount URI" },
+
+  # Jump
+  { on = [
+    "g",
+    "m",
+  ], run = "plugin gvfs -- jump-to-device", desc = "Select device then jump to its mount point" },
+]
