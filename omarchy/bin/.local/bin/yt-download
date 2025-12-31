@@ -14,7 +14,7 @@ CHOICE="$2"
 
 # === If no URL passed, ask with gum ===
 if [ -z "$URL" ]; then
-  URL=$(gum input --placeholder "Enter YouTube or Playlist URL")
+  URL=$(gum input --placeholder "Enter Video or Playlist URL")
 fi
 
 # === Validate URL ===
