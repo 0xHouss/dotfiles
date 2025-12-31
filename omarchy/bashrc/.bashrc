@@ -50,6 +50,7 @@ export PATH="/home/houss/perl5/bin${PATH:+:${PATH}}";
 export PATH="/usr/bin/core_perl:$PATH"
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 export PERL5LIB="/home/houss/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
 export PERL_LOCAL_LIB_ROOT="/home/houss/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
 export PERL_MB_OPT="--install_base \"/home/houss/perl5\"";
