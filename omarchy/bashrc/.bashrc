@@ -15,6 +15,7 @@ alias tl="tmux ls"
 alias ta="tmux attach"
 alias n="nvim"
 alias lg="lazygit"
+alias pnpmu="pnpm self-update"
 
 alias dot="cd ~/dotfiles/omarchy/"
 alias om="cd ~/.local/share/omarchy/"
