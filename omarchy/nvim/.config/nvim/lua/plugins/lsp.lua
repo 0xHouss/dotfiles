@@ -24,6 +24,8 @@ return {
         opts = {
           ensure_installed = {
             "lua_ls",
+            "jdtls",
+            "jq",
             "vtsls",
             "tailwindcss",
             "cssls",
@@ -48,7 +50,7 @@ return {
         opts = {
           library = {
             { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            { path = "snacks.nvim", words = { "Snacks" } },
+            { path = "snacks.nvim",        words = { "Snacks" } },
           },
         },
       },
