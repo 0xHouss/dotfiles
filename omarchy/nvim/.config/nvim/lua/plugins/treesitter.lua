@@ -26,6 +26,8 @@ return {
         "jsonc",
         "lua",
         "luadoc",
+        "dockerfile",
+        "xcompose",
         "luap",
         "markdown",
         "markdown_inline",
