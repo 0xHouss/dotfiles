@@ -22,7 +22,7 @@ alias om="cd ~/.local/share/omarchy/"
 alias obs="cd ~/Vaults/Second\ Brain/"
 
 # pnpm
-export PNPM_HOME="/home/houss/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -47,13 +47,14 @@ else
 fi
 
 # Environment variables
-export PATH="/home/houss/perl5/bin${PATH:+:${PATH}}";
 export PATH="/usr/bin/core_perl:$PATH"
+export PATH="$HOME/perl5/bin${PATH:+:${PATH}}";
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export PERL5LIB="/home/houss/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
-export PERL_LOCAL_LIB_ROOT="/home/houss/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
-export PERL_MB_OPT="--install_base \"/home/houss/perl5\"";
-export PERL_MM_OPT="INSTALL_BASE=/home/houss/perl5";
+export PATH="$HOME/.local/bin:$PATH"
+export PERL5LIB="$HOME/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
+export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
+export PERL_MB_OPT="--install_base \"$HOME/perl5\"";
+export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export MANPAGER="nvim +Man!"
