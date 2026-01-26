@@ -1,6 +1,0 @@
-[Desktop Entry]
-Name=TermPDF
-Exec=termpdf.py %f
-Type=Application
-Terminal=true
-MimeType=application/pdf
