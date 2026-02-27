@@ -1,14 +1,10 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    lazy = false,
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    main = "nvim-treesitter.configs",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-context",
-    },
+    -- event = { "BufReadPost", "BufNewFile" },
+    -- cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
@@ -51,76 +47,67 @@ return {
           node_decremental = "<BS>",
         },
       },
-      textobjects = {
-        move = {
-          enable = true,
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
-            ["]a"] = "@parameter.inner",
-          },
-          goto_next_end = {
-            ["]F"] = "@function.outer",
-            ["]C"] = "@class.outer",
-            ["]A"] = "@parameter.inner",
-          },
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
-            ["[a"] = "@parameter.inner",
-          },
-          goto_previous_end = {
-            ["[F"] = "@function.outer",
-            ["[C"] = "@class.outer",
-            ["[A"] = "@parameter.inner",
-          },
-        },
-        select = {
-          enable = true,
-          lookahead = true,
-
-          keymaps = {
-            ["af"] = { query = "@function.outer", desc = "Select around function" },
-            ["if"] = { query = "@function.inner", desc = "Select inside function" },
-            ["ac"] = { query = "@class.outer", desc = "Select around class" },
-            ["ic"] = { query = "@class.inner", desc = "Select inside class" },
-            ["aa"] = { query = "@parameter.outer", desc = "Select around parameter" },
-            ["ia"] = { query = "@parameter.inner", desc = "Select inside parameter" },
-          },
-        },
-      },
     },
   },
 
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = "BufReadPost",
-    config = function()
-      -- override movement in diff mode to use default keys
-      local move = require("nvim-treesitter.textobjects.move")
-      local configs = require("nvim-treesitter.configs")
-
-      for name, fn in pairs(move) do
-        if name:find("goto") == 1 then
-          move[name] = function(query, ...)
-            if vim.wo.diff then
-              local config = configs.get_module("textobjects.move")[name] or {}
-              for key, q in pairs(config) do
-                if query == q and key:find("[%]%[][cC]") then
-                  vim.cmd("normal! " .. key)
-                  return
-                end
-              end
-            end
-            return fn(query, ...)
-          end
-        end
-      end
+    branch = "main",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    init = function()
+      vim.g.no_plugin_maps = true
     end,
+    opts = {
+      select = {
+        lookahead = true,
+        selection_modes = {
+          ['@parameter.outer'] = 'v', -- charwise
+          ['@function.outer'] = 'V',  -- linewise
+          ['@class.outer'] = '<c-v>', -- blockwise
+        },
+        include_surrounding_whitespace = false,
+      },
+    },
+    keys = {
+      {
+        "af",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
+        end,
+        mode = { "x", "o" },
+        desc = "Select outer function"
+      },
+      {
+        "if",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
+        end,
+        mode = { "x", "o" },
+        desc = "Select inner function"
+      },
+      {
+        "ac",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
+        end,
+        mode = { "x", "o" },
+        desc = "Select outer class"
+      },
+      {
+        "ic",
+        function()
+          require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
+        end,
+        mode = { "x", "o" },
+        desc = "Select inner class"
+      },
+    },
   },
 
   {
     "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     event = "BufReadPost",
   },
 
