@@ -31,6 +31,13 @@ return {
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
+        header = [[
+ ██████╗ ██╗  ██╗██╗  ██╗ ██████╗ ██╗   ██╗███████╗███████╗
+██╔═████╗╚██╗██╔╝██║  ██║██╔═══██╗██║   ██║██╔════╝██╔════╝
+██║██╔██║ ╚███╔╝ ███████║██║   ██║██║   ██║███████╗███████╗
+████╔╝██║ ██╔██╗ ██╔══██║██║   ██║██║   ██║╚════██║╚════██║
+╚██████╔╝██╔╝ ██╗██║  ██║╚██████╔╝╚██████╔╝███████║███████║
+ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝ ]],
       }
     },
     indent = { enabled = true },
@@ -93,8 +100,8 @@ return {
     { "<leader>sw",      function() Snacks.picker.grep_word() end,                                              desc = "Visual selection or word", mode = { "n", "x" } },
 
     -- scratch
-    { "<leader>S",       function() Snacks.scratch() end,                                         desc = "Toggle Scratch Buffer" },
-    { "<leader>X",       function() Snacks.scratch.select() end,                                         desc = "Select Scratch Buffer" },
+    { "<leader>S",       function() Snacks.scratch() end,                                                       desc = "Toggle Scratch Buffer" },
+    { "<leader>X",       function() Snacks.scratch.select() end,                                                desc = "Select Scratch Buffer" },
 
     -- search
     { '<leader>s"',      function() Snacks.picker.registers() end,                                              desc = "Registers" },
