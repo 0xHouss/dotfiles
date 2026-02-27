@@ -48,6 +48,10 @@ prepend_keymap = [
     "g",
     "D",
   ], run = "cd ~/Documents", desc = "Go ~/Documents" },
+  { on = [
+    "g",
+    "w",
+  ], run = "cd ~/Work", desc = "Go ~/Work" },
 
   # Recycle Bin
   { on = [
