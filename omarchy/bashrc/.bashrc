@@ -9,17 +9,19 @@ source ~/.local/share/omarchy/default/bash/rc
 alias resource="source ~/.bashrc"
 alias fman="compgen -c | fzf | xargs man"
 alias stow="stow -t ~"
-alias vmux="tmuxifier load-session vmux"
 alias t="tmux"
 alias tl="tmux ls"
 alias ta="tmux attach"
 alias n="nvim"
 alias lg="lazygit"
+alias dc="docker compose"
 alias pnpmu="pnpm self-update"
 
 alias dot="cd ~/dotfiles/omarchy/"
 alias om="cd ~/.local/share/omarchy/"
 alias obs="cd ~/Vaults/Second\ Brain/"
+
+alias whatsmyip="curl -s https://api.apify.com/v2/browser-info | jq -r '.clientIp'"
 
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
