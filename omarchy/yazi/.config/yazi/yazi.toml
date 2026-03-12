@@ -4,9 +4,3 @@
 
 [mgr]
 show_hidden = true
-
-[opener]
-pdf = [{ run = 'clear && termpdf.py "$@"', desc = "Open PDF", block = true }]
-
-[open]
-prepend_rules = [{ mime = "application/pdf", use = "pdf" }]
