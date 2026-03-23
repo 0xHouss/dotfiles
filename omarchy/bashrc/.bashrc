@@ -14,6 +14,7 @@ alias tl="tmux ls"
 alias ta="tmux attach"
 alias n="nvim"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias dc="docker compose"
 alias pnpmu="pnpm self-update"
 
@@ -60,3 +61,4 @@ export PERL_LOCAL_LIB_ROOT="$HOME/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_
 export PERL_MB_OPT="--install_base \"$HOME/perl5\"";
 export PERL_MM_OPT="INSTALL_BASE=$HOME/perl5";
 export MANPAGER="nvim +Man!"
+export PATH="$PATH:$HOME/.local/share/gem/ruby/3.4.0/bin"
