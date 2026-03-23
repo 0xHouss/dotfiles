@@ -102,81 +102,74 @@ return {
         end,
         desc = "Remove Unused Imports",
       },
-      opts = {
-        servers = {
-          vtsls = {
-            -- explicitly add default filetypes, so that we can extend
-            -- them in related extras
-            filetypes = {
-              "javascript",
-              "javascriptreact",
-              "javascript.jsx",
-              "typescript",
-              "typescriptreact",
-              "typescript.tsx",
-            },
-            settings = {
-              complete_function_calls = true,
-              vtsls = {
-                enableMoveToFileCodeAction = true,
-                autoUseWorkspaceTsdk = true,
-                experimental = {
-                  maxInlayHintLength = 30,
-                  completion = {
-                    enableServerSideFuzzyMatch = true,
-                  },
-                },
-              },
-              typescript = {
-                updateImportsOnFileMove = { enabled = "always" },
-                suggest = {
-                  completeFunctionCalls = true,
-                },
-                inlayHints = {
-                  enumMemberValues = { enabled = true },
-                  functionLikeReturnTypes = { enabled = true },
-                  parameterNames = { enabled = "literals" },
-                  parameterTypes = { enabled = true },
-                  propertyDeclarationTypes = { enabled = true },
-                  variableTypes = { enabled = false },
-                },
-              },
-            },
+    },
+    opts = {
+      servers = {
+        vtsls = {
+          -- explicitly add default filetypes, so that we can extend
+          -- them in related extras
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
           },
-          prismals = {
-            settings = {
-              prisma = {
-                prismaFmtBinPath = "", -- optional, path to custom prisma-fmt binary
+          settings = {
+            complete_function_calls = true,
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                maxInlayHintLength = 30,
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
               },
             },
-            filetypes = { "prisma" },
-          },
-          tinymist = {
-            settings = {
-              formatterMode = "typstyle",
-              exportPdf = "onSave",
-              semanticTokens = "disable",
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
             },
           },
         },
+        prismals = {},
+        tinymist = {
+          settings = {
+            formatterMode = "typstyle",
+            exportPdf = "onSave",
+            semanticTokens = "disable",
+          },
+        },
       },
-      config = function(_, opts)
-        for server, config in pairs(opts.servers) do
-          -- passing config.capabilities to blink.cmp merges with the capabilities in your
-          -- `opts[server].capabilities, if you've defined it
-          config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-          vim.lsp.config(server, config)
-          vim.lsp.enable(server)
-        end
-
-        vim.diagnostic.config({
-          virtual_text = true, -- ✅ show inline diagnostics
-          signs = true,
-          underline = true,
-          update_in_insert = false,
-          severity_sort = true,
-        })
-      end,
     },
-  }
+    config = function(_, opts)
+      for server, config in pairs(opts.servers) do
+        -- passing config.capabilities to blink.cmp merges with the capabilities in your
+        -- `opts[server].capabilities, if you've defined it
+        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+        vim.lsp.config(server, config)
+        vim.lsp.enable(server)
+      end
+
+      vim.diagnostic.config({
+        virtual_text = true, -- ✅ show inline diagnostics
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+        severity_sort = true,
+      })
+    end,
+  },
 }
