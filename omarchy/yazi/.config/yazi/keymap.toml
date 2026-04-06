@@ -7,6 +7,7 @@ prepend_keymap = [
   # Undo
   { on = "u", run = "plugin undo", desc = "Undo last operation" },
 
+
   # Jumplist
   { on = [
     "<C-o>",
@@ -14,6 +15,7 @@ prepend_keymap = [
   { on = [
     "<C-i>",
   ], run = "plugin jumplist -- --direction=forward", desc = "Go forward in jumplist" },
+
   # Alternative keys for jumplist
   { on = [
     "<A-left>",
@@ -29,11 +31,13 @@ prepend_keymap = [
     "m",
   ], run = "plugin chmod", desc = "Chmod on selected files" },
 
+
   # LazyGit
   { on = [
     "g",
     "l",
   ], run = "plugin lazygit", desc = "run lazygit" },
+
 
   # Bookmarks
   { on = [
@@ -53,6 +57,7 @@ prepend_keymap = [
     "w",
   ], run = "cd ~/Work", desc = "Go ~/Work" },
 
+
   # Recycle Bin
   { on = [
     "R",
@@ -71,8 +76,10 @@ prepend_keymap = [
     "r",
   ], run = "plugin recycle-bin -- restore", desc = "Restore from Trash" },
 
+
   # System Clipboard
   { on = "<C-y>", run = "plugin wl-clipboard", desc = "Copy to system clipboard" },
+
 
   # GVFS Device Management
 
