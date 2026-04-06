@@ -1,8 +1,8 @@
 return {
   "laytan/cloak.nvim",
   event = "BufReadPre",
+  enabled = false,
   opts = {
-    enabled = true,
     cloak_character = "•",
     highlight_group = "Comment",
     cloak_telescope = true,
