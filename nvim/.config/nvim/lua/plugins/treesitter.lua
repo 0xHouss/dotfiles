@@ -3,6 +3,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     build = ":TSUpdate",
+    main = "nvim-treesitter",
     opts = {
       highlight = { enable = true },
       indent = { enable = true },
@@ -56,9 +57,9 @@ return {
       select = {
         lookahead = true,
         selection_modes = {
-          ['@parameter.outer'] = 'v', -- charwise
-          ['@function.outer'] = 'V',  -- linewise
-          ['@class.outer'] = '<c-v>', -- blockwise
+          ["@parameter.outer"] = "v", -- charwise
+          ["@function.outer"] = "V", -- linewise
+          ["@class.outer"] = "<c-v>", -- blockwise
         },
         include_surrounding_whitespace = false,
       },
@@ -70,7 +71,7 @@ return {
           require("nvim-treesitter-textobjects.select").select_textobject("@function.outer", "textobjects")
         end,
         mode = { "x", "o" },
-        desc = "Select outer function"
+        desc = "Select outer function",
       },
       {
         "if",
@@ -78,7 +79,7 @@ return {
           require("nvim-treesitter-textobjects.select").select_textobject("@function.inner", "textobjects")
         end,
         mode = { "x", "o" },
-        desc = "Select inner function"
+        desc = "Select inner function",
       },
       {
         "ac",
@@ -86,7 +87,7 @@ return {
           require("nvim-treesitter-textobjects.select").select_textobject("@class.outer", "textobjects")
         end,
         mode = { "x", "o" },
-        desc = "Select outer class"
+        desc = "Select outer class",
       },
       {
         "ic",
@@ -94,7 +95,7 @@ return {
           require("nvim-treesitter-textobjects.select").select_textobject("@class.inner", "textobjects")
         end,
         mode = { "x", "o" },
-        desc = "Select inner class"
+        desc = "Select inner class",
       },
     },
   },
@@ -102,6 +103,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
+    enabled = false,
     event = "BufReadPost",
   },
 
