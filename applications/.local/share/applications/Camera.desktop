@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Camera
+Comment=Camera
+Exec=$TERMINAL --class=TUI.float -e snapshot &
+Terminal=false
+Type=Application
+Icon=/home/houss/.local/share/applications/icons/Camera.png
+StartupNotify=true
