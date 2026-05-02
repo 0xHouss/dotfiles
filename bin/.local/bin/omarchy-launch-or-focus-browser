@@ -1,0 +1,36 @@
+#!/bin/bash
+# Launch or focus the default browser as determined by xdg-settings.
+# Automatically converts --private into the correct flag for the given browser.
+# If the browser is already open, focuses it instead of opening a new instance.
+
+default_browser=$(xdg-settings get default-web-browser)
+browser_exec=$(sed -n 's/^Exec=\([^ ]*\).*/\1/p' {~/.local,~/.nix-profile,/usr}/share/applications/$default_browser 2>/dev/null | head -1)
+browser_name=$(basename "$browser_exec")
+
+if $browser_exec --help | grep -q MOZ_LOG; then
+  private_flag="--private-window"
+elif [[ $browser_exec =~ edge ]]; then
+  private_flag="--inprivate"
+else
+  private_flag="--incognito"
+fi
+
+# Resolve --private to the browser-specific flag in the args we were passed
+args=("${@/--private/$private_flag}")
+
+# If a private/incognito flag is present in the final args, skip focus and always open a new window
+for arg in "${args[@]}"; do
+  if [[ "$arg" == "$private_flag" ]]; then
+    exec setsid uwsm-app -- "$browser_exec" "${args[@]}"
+  fi
+done
+
+# Otherwise, try to focus an existing window
+WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg p "$browser_name" \
+  '.[]|select((.class|test("\\b" + $p + "\\b";"i")) or (.title|test("\\b" + $p + "\\b";"i")))|.address' | head -n1)
+
+if [[ -n $WINDOW_ADDRESS ]]; then
+  hyprctl dispatch focuswindow "address:$WINDOW_ADDRESS"
+else
+  exec setsid uwsm-app -- "$browser_exec" "${args[@]}"
+fi
