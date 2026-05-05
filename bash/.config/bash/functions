@@ -1,0 +1,3 @@
+# vim: set ft=bash:
+
+for f in ~/.config/bash/fns/*; do source "$f"; done

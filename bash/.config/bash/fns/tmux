@@ -1,0 +1,15 @@
+# vim: set ft=bash:
+
+function ta() {
+  local sessions
+  sessions=$(tmux ls 2>/dev/null) || { echo "no sessions"; return 1; }
+
+  if [[ $(echo "$sessions" | wc -l) -eq 1 ]]; then
+    tmux attach -t "$(echo "$sessions" | cut -d: -f1)"
+  else
+    local session
+    session=$(echo "$sessions" | fzf) || return 1
+    session=$(echo "$session" | cut -d: -f1)
+    tmux attach -t "$session"
+  fi
+}

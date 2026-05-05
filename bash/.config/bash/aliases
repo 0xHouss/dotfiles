@@ -1,0 +1,16 @@
+# vim: set ft=bash:
+
+alias resource='source ~/.bashrc'
+alias fman='compgen -c | fzf | xargs man'
+alias stow='stow -t ~'
+alias t='tmux new -s $(basename $PWD)'
+alias tl='tmux ls'
+alias n='nvim'
+alias lg='lazygit'
+alias ld='lazydocker'
+alias dc='docker compose'
+
+alias dot='cd ~/dotfiles/'
+alias work='cd ~/Work/'
+alias om='cd ~/.local/share/omarchy/'
+
