@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+NOTE_DIR="/home/houss/Documents/Second Brain/8 - Instant Notes"
+TODAY=$(date +"%Y-%m-%d")
+
+# Find the next sequential number for today
+SEQ=1
+while [[ -e "${NOTE_DIR}/${TODAY}-${SEQ}.md" ]]; do
+  ((SEQ++))
+done
+
+NOTE_PATH="${NOTE_DIR}/${TODAY}-${SEQ}.md"
+
+cd "${NOTE_DIR}" && nvim "${NOTE_PATH}"
