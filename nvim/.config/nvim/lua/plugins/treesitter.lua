@@ -1,13 +1,11 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "main",
     lazy = false,
     build = ":TSUpdate",
-    main = "nvim-treesitter",
-    opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
-      ensure_installed = {
+    config = function()
+      local ensure_installed = {
         "bash",
         "c",
         "html",
@@ -16,12 +14,10 @@ return {
         "css",
         "jsdoc",
         "json",
-        "jsonc",
         "lua",
         "luadoc",
         "dockerfile",
         "xcompose",
-        "lua",
         "markdown",
         "markdown_inline",
         "query",
@@ -32,17 +28,24 @@ return {
         "prisma",
         "xml",
         "yaml",
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<BS>",
-        },
-      },
-    },
+      }
+
+      require("nvim-treesitter").install(ensure_installed)
+
+      -- On the main branch, highlighting and indentation are no longer setup
+      -- options; they must be started per-buffer.
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("au_treesitter", { clear = true }),
+        callback = function(ev)
+          -- Start highlighting if a parser is available for this filetype.
+          if not pcall(vim.treesitter.start) then
+            return
+          end
+          -- Treesitter-based indentation (experimental on main).
+          vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
   },
 
   {
