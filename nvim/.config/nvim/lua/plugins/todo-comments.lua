@@ -2,14 +2,32 @@ return {
   "folke/todo-comments.nvim",
   event = { "BufReadPost", "BufNewFile" },
   cmd = { "TodoTrouble" },
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = { "nvim-lua/plenary.nvim" },
   opts = {
-    signs = false
+    signs = false,
   },
   keys = {
-    { "]t",         function() require("todo-comments").jump_next() end, desc = "Next Todo Comment" },
-    { "[t",         function() require("todo-comments").jump_prev() end, desc = "Previous Todo Comment" },
-    { "<leader>xt", "<cmd>Trouble todo toggle<cr>",                      desc = "Todo (Trouble)" },
-    { "<leader>st", function() Snacks.picker.todo_comments() end,        desc = "Todo" },
+    {
+      "]t",
+      function()
+        require("todo-comments").jump_next()
+      end,
+      desc = "Next Todo Comment",
+    },
+    {
+      "[t",
+      function()
+        require("todo-comments").jump_prev()
+      end,
+      desc = "Previous Todo Comment",
+    },
+    { "<leader>xt", "<cmd>Trouble todo toggle<cr>", desc = "Todo (Trouble)" },
+    {
+      "<leader>st",
+      function()
+        Snacks.picker.todo_comments()
+      end,
+      desc = "Todo",
+    },
   },
 }

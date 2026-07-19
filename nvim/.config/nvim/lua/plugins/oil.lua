@@ -2,7 +2,7 @@
 
 -- TODO: add extensions for git and diagnostics
 return {
-  'stevearc/oil.nvim',
+  "stevearc/oil.nvim",
   lazy = false,
   dependencies = { { "echasnovski/mini.icons", opts = {} } },
   ---@type oil.SetupOpts
@@ -27,19 +27,19 @@ return {
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
     },
     view_options = {
-      show_hidden = true
-    }
+      show_hidden = true,
+    },
   },
   keys = {
     {
       "-",
       "<CMD>Oil<CR>",
-      desc = "Open oil in parent directory"
+      desc = "Open oil in parent directory",
     },
     {
       "<leader>o",
       "<CMD>Oil --float<CR>",
-      desc = "Open floating oil in parent directory"
-    }
-  }
+      desc = "Open floating oil in parent directory",
+    },
+  },
 }
