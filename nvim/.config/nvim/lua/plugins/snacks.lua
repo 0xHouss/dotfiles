@@ -103,13 +103,6 @@ return {
       desc = "Command History",
     },
     {
-      "<leader>n",
-      function()
-        Snacks.picker.notifications()
-      end,
-      desc = "Notification History",
-    },
-    {
       "<leader>e",
       function()
         Snacks.explorer()
@@ -213,13 +206,6 @@ return {
     },
 
     -- grep
-    {
-      "<leader>sb",
-      function()
-        Snacks.picker.lines()
-      end,
-      desc = "Buffer Lines",
-    },
     {
       "<leader>sB",
       function()
