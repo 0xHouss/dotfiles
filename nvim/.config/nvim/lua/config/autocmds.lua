@@ -140,15 +140,3 @@ vim.api.nvim_create_autocmd("FileType", {
     require("jdtls.jdtls_setup").setup({})
   end,
 })
-
--- Enable Treesitter folding for all buffers with a parser
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup("treesitter_fold"),
-  callback = function()
-    local has_parser = pcall(vim.treesitter.get_parser, 0)
-    if has_parser then
-      vim.opt_local.foldmethod = "expr"
-      vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    end
-  end,
-})
