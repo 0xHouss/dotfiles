@@ -8,6 +8,11 @@ function M:setup()
     .. package.config:sub(1, 1)
     .. project_name
   local os_name = vim.loop.os_uname().sysname
+  local sep = package.config:sub(1, 1)
+  local mason_jdtls = table.concat({ vim.fn.stdpath("data"), "mason", "packages", "jdtls" }, sep)
+  -- Glob the launcher jar so a Mason jdtls update (which bumps the version in
+  -- the filename) doesn't silently break the language server.
+  local launcher_jar = vim.fn.glob(mason_jdtls .. sep .. "plugins" .. sep .. "org.eclipse.equinox.launcher_*.jar")
   local config = {
     -- The command that starts the language server
     -- See: https://github.com/eclipse/eclipse.jdt.ls#running-from-the-command-line
@@ -31,30 +36,13 @@ function M:setup()
 
       -- 💀
       "-jar",
-      vim.fn.stdpath("data")
-        .. package.config:sub(1, 1)
-        .. "mason"
-        .. package.config:sub(1, 1)
-        .. "packages"
-        .. package.config:sub(1, 1)
-        .. "jdtls"
-        .. package.config:sub(1, 1)
-        .. "plugins"
-        .. package.config:sub(1, 1)
-        .. "org.eclipse.equinox.launcher_1.7.100.v20251111-0406.jar",
-      -- Must point to the                                                     Change this to
-      -- eclipse.jdt.ls installation                                           the actual version
+      launcher_jar,
+      -- Globbed above from the Mason jdtls install.
 
       -- 💀
       "-configuration",
-      vim.fn.stdpath("data")
-        .. package.config:sub(1, 1)
-        .. "mason"
-        .. package.config:sub(1, 1)
-        .. "packages"
-        .. package.config:sub(1, 1)
-        .. "jdtls"
-        .. package.config:sub(1, 1)
+      mason_jdtls
+        .. sep
         .. "config_"
         .. (os_name == "Windows_NT" and "win" or os_name == "Linux" and "linux" or "mac"),
       -- eclipse.jdt.ls installation            Depending on your system.
