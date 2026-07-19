@@ -41,10 +41,7 @@ function M:setup()
 
       -- 💀
       "-configuration",
-      mason_jdtls
-        .. sep
-        .. "config_"
-        .. (os_name == "Windows_NT" and "win" or os_name == "Linux" and "linux" or "mac"),
+      mason_jdtls .. sep .. "config_" .. (os_name == "Windows_NT" and "win" or os_name == "Linux" and "linux" or "mac"),
       -- eclipse.jdt.ls installation            Depending on your system.
 
       -- 💀

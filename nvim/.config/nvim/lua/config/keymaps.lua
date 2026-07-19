@@ -5,7 +5,7 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true
 map({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 map({ "n", "x" }, "<Up>", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
-map({ 't' }, '<Esc>', [[<C-\><C-n>]], { desc = "Leave terminal insert mode", noremap = true })
+map({ "t" }, "<Esc>", [[<C-\><C-n>]], { desc = "Leave terminal insert mode", noremap = true })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
@@ -93,27 +93,27 @@ map("n", "<C-W>|", "<C-W>v", { desc = "Split Window Right", remap = true })
 map("n", "<C-W>x", "<C-W>c", { desc = "Delete Window", remap = true })
 
 -- yanking
-map({ "n", "v" }, "<leader>y", "\"+y", { noremap = true, silent = true, desc = "Yank to System Clipboard" })
-map({ "n", "v" }, "<leader>Y", "\"+y$", { noremap = true, silent = true, desc = "Yank end of line to System Clipboard" })
+map({ "n", "v" }, "<leader>y", '"+y', { noremap = true, silent = true, desc = "Yank to System Clipboard" })
+map({ "n", "v" }, "<leader>Y", '"+y$', { noremap = true, silent = true, desc = "Yank end of line to System Clipboard" })
 
 map("n", "yA", function()
   local pos = vim.api.nvim_win_get_cursor(0) -- save current cursor position
-  vim.cmd("normal! ggyG")                    -- yank whole file
-  vim.api.nvim_win_set_cursor(0, pos)        -- restore cursor position
+  vim.cmd("normal! ggyG") -- yank whole file
+  vim.api.nvim_win_set_cursor(0, pos) -- restore cursor position
 end, { noremap = true, silent = true, desc = "Yank File Content" })
 
 map("n", "<leader>yA", function()
   local pos = vim.api.nvim_win_get_cursor(0) -- save current cursor position
-  vim.cmd("normal! gg\"+yG")                 -- yank whole file to clipboard
-  vim.api.nvim_win_set_cursor(0, pos)        -- restore cursor position
+  vim.cmd('normal! gg"+yG') -- yank whole file to clipboard
+  vim.api.nvim_win_set_cursor(0, pos) -- restore cursor position
 end, { noremap = true, silent = true, desc = "Yank File Content to System Clipboard" })
 
 -- pasting
-map("v", "<leader>p", "\"_dP", { noremap = true, desc = "Safe Paste" })
+map("v", "<leader>p", '"_dP', { noremap = true, desc = "Safe Paste" })
 
 -- indenting
 map("n", "=A", function()
   local pos = vim.api.nvim_win_get_cursor(0) -- save current cursor position
-  vim.cmd("normal! gg=G")                    -- format whole file
-  vim.api.nvim_win_set_cursor(0, pos)        -- restore cursor position
+  vim.cmd("normal! gg=G") -- format whole file
+  vim.api.nvim_win_set_cursor(0, pos) -- restore cursor position
 end, { noremap = true, silent = true, desc = "Indent Document" })

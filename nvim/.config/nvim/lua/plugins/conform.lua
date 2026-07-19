@@ -1,14 +1,14 @@
 return {
-  'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
-  cmd = { 'ConformInfo' },
+  "stevearc/conform.nvim",
+  event = { "BufWritePre" },
+  cmd = { "ConformInfo" },
   keys = {
     {
-      '<leader>cf',
+      "<leader>cf",
       function()
-        require('conform').format({ async = true, lsp_format = 'fallback' })
+        require("conform").format({ async = true, lsp_format = "fallback" })
       end,
-      desc = 'Format buffer',
+      desc = "Format buffer",
     },
   },
   opts = {
@@ -20,7 +20,7 @@ return {
       else
         return {
           timeout_ms = 500,
-          lsp_format = 'fallback',
+          lsp_format = "fallback",
         }
       end
     end,
