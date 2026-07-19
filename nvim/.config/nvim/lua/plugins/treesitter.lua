@@ -37,12 +37,11 @@ return {
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("au_treesitter", { clear = true }),
         callback = function(ev)
-          -- Only enable treesitter features when a parser is available.
-          if not pcall(vim.treesitter.get_parser, ev.buf) then
+          -- Start highlighting; this creates the parser and errors for
+          -- filetypes without one (e.g. oil), so gate the rest on it.
+          if not pcall(vim.treesitter.start) then
             return
           end
-          -- Highlighting.
-          vim.treesitter.start()
           -- Indentation (experimental on main).
           vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           -- Folding.
