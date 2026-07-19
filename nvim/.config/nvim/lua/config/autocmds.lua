@@ -126,6 +126,7 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 
 -- Always remove r and o after filetype plugins run
 vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("formatoptions"),
   pattern = "*",
   callback = function()
     vim.opt.formatoptions:remove({ "r", "o" })
@@ -133,6 +134,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("jdtls"),
   pattern = "java",
   callback = function()
     require("jdtls.jdtls_setup").setup({})
@@ -141,6 +143,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- Enable Treesitter folding for all buffers with a parser
 vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup("treesitter_fold"),
   callback = function()
     local has_parser = pcall(vim.treesitter.get_parser, 0)
     if has_parser then
