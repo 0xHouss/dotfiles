@@ -32,17 +32,22 @@ return {
 
       require("nvim-treesitter").install(ensure_installed)
 
-      -- On the main branch, highlighting and indentation are no longer setup
-      -- options; they must be started per-buffer.
+      -- On the main branch, highlighting, indentation and folding are no
+      -- longer setup options; they must be enabled per-buffer.
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("au_treesitter", { clear = true }),
         callback = function(ev)
-          -- Start highlighting if a parser is available for this filetype.
-          if not pcall(vim.treesitter.start) then
+          -- Only enable treesitter features when a parser is available.
+          if not pcall(vim.treesitter.get_parser, ev.buf) then
             return
           end
-          -- Treesitter-based indentation (experimental on main).
+          -- Highlighting.
+          vim.treesitter.start()
+          -- Indentation (experimental on main).
           vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          -- Folding.
+          vim.opt_local.foldmethod = "expr"
+          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
         end,
       })
     end,
