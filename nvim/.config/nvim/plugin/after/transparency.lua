@@ -54,6 +54,18 @@ local groups = {
   "NotifyDEBUGBorder",
 }
 
-for _, name in ipairs(groups) do
-  make_transparent(name)
+local function apply_transparency()
+  for _, name in ipairs(groups) do
+    make_transparent(name)
+  end
 end
+
+-- Re-assert transparency whenever a colorscheme is (re)applied, so it can't be
+-- clobbered by the colorscheme setting backgrounds after this file runs.
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = vim.api.nvim_create_augroup("au_transparency", { clear = true }),
+  callback = apply_transparency,
+})
+
+-- Apply once now in case the colorscheme was already set before this ran.
+apply_transparency()
