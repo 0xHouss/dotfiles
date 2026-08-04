@@ -1,0 +1,3 @@
+# local dev clones symlinked from ~/Work/yazi-plugins
+yazi/.config/yazi/plugins/jumplist.yazi
+yazi/.config/yazi/plugins/undo.yazi
