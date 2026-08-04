@@ -31,5 +31,5 @@ require("gvfs"):setup({
 })
 
 require("recycle-bin"):setup({})
--- require("jumplist"):setup({})
--- require("undo"):setup({})
+require("jumplist"):setup({})
+require("undo"):setup({})
