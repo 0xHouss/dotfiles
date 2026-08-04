@@ -25,13 +25,6 @@ prepend_keymap = [
   ], run = "plugin jumplist -- --direction=forward", desc = "Go forward in jumplist" },
 
 
-  # Chmod
-  { on = [
-    "c",
-    "m",
-  ], run = "plugin chmod", desc = "Chmod on selected files" },
-
-
   # LazyGit
   { on = [
     "g",
