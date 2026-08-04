@@ -7,3 +7,6 @@ source ~/.local/share/omarchy/default/bash/rc
 
 # Your custom aliases and functions
 source ~/.config/bash/rc
+
+. "$HOME/.local/share/../bin/env"
+. "$HOME/.cargo/env"
