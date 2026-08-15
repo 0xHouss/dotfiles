@@ -35,6 +35,17 @@ The per-monitor map is in `Workspaces.qml` and has to agree with the
 `workspace_rule` pinning in `hypr/hyprland.lua`, which is what actually sends
 new workspaces to the right screen. Unlisted monitors fall back to all ten.
 
+## `houss.tailscale`
+
+A clone of `omarchy.tailscale` whose only change is `accountLabel` in
+`Model.js`. Tailscale defaults a profile's nickname to the login it was
+created with, so one identity belonging to two tailnets produces two rows
+labelled identically in the panel's CONNECTIONS section. The label now falls
+back to the tailnet unless a nickname was actually customised.
+
+Every other file is byte-identical to upstream, to keep
+`omarchy-plugin-update` merges clean.
+
 ## shell.json is deliberately not stowed
 
 `omarchy-shell-config` rewrites `~/.config/omarchy/shell.json` with
