@@ -21,6 +21,20 @@ A clone of the first-party `omarchy.lock` plugin, created with
 Cloning means upstream fixes to the lock screen do not arrive automatically;
 `omarchy-plugin-update` is how you pull them in.
 
+## `houss.workspaces`
+
+A clone of the first-party `omarchy.workspaces` bar widget that restores the
+old waybar behaviour:
+
+- workspaces 1-10 are always drawn, occupied or not
+- workspace 10 is labelled `10`, not `0`
+- each bar shows only its own monitor's set — eDP-1 gets 1-5, HDMI-A-1 gets
+  6-10 — like waybar's `persistent-workspaces` with `all-outputs: false`
+
+The per-monitor map is in `Workspaces.qml` and has to agree with the
+`workspace_rule` pinning in `hypr/hyprland.lua`, which is what actually sends
+new workspaces to the right screen. Unlisted monitors fall back to all ten.
+
 ## shell.json is deliberately not stowed
 
 `omarchy-shell-config` rewrites `~/.config/omarchy/shell.json` with
