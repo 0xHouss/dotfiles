@@ -59,6 +59,15 @@ hl.unbind("SUPER + X") -- Universal cut
 o.bind("SUPER + X", "X", { webapp = "https://x.com/" })
 o.bind("SUPER + ALT + X", "X Post", { webapp = "https://x.com/compose/post" })
 
+-- Menus --------------------------------------------------------------------
+-- Swapped from the defaults: apps launcher on bare SUPER+SPACE, the full
+-- Omarchy menu behind SUPER+ALT+SPACE.
+hl.unbind("SUPER + SPACE") -- Omarchy menu
+o.bind("SUPER + SPACE", "Apps menu", "omarchy-menu toggle apps")
+
+hl.unbind("SUPER + ALT + SPACE") -- Apps menu
+o.bind("SUPER + ALT + SPACE", "Omarchy menu", "omarchy-menu toggle")
+
 -- System -------------------------------------------------------------------
 hl.unbind("SUPER + L") -- Toggle workspace layout
 o.bind("SUPER + L", "Lock screen", "omarchy-system-lock")
