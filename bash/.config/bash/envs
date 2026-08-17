@@ -20,3 +20,5 @@ export MANPAGER="nvim +Man!"
 export PATH="$HOME/.cargo/bin:$PATH"
 export SSH_AUTH_SOCK=$HOME/.bitwarden-ssh-agent.sock
 
+. "$HOME/.cargo/env"
+. "$HOME/.local/share/../bin/env"
