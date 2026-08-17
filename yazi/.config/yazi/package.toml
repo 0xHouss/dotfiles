@@ -23,5 +23,10 @@ use = "Lil-Dank/lazygit"
 rev = "a90fc71"
 hash = "894e801b788d0fca94627b58f8c9e1d4"
 
+[[plugin.deps]]
+use = "0xHouss/jumplist"
+rev = "789a66b"
+hash = "97a9509b0eca357d5f0a26f68949f7a1"
+
 [flavor]
 deps = []
