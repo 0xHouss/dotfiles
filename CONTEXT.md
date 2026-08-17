@@ -58,6 +58,15 @@ through OSC 52 so copies survive tmux and SSH.
 `package.toml`. `jumplist.yazi` and `undo.yazi` are gitignored: they are
 symlinks to local dev clones in `~/Work/yazi-plugins`.
 
+**environment** — `environment.d` entries for the systemd *user* manager. This
+is the only place an environment variable reaches apps started from a Hyprland
+binding: those run through `uwsm-app`, so they inherit the user manager's
+environment and never source a bash rc. Anything a keybound app needs belongs
+here; `bash/.config/bash/envs` only reaches shells (including tty and SSH
+logins, which the user manager does not cover). `SSH_AUTH_SOCK` is deliberately
+in both. Changes take effect for newly launched apps after
+`systemctl --user daemon-reload`.
+
 **bin** — personal scripts stowed to `~/.local/bin`: `create-instant-note`
 (dated note in the Obsidian vault, bound to `SUPER+SHIFT+N`) and `yt-download`.
 
