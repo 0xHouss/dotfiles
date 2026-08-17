@@ -38,6 +38,8 @@ hl.unbind("SUPER + SLASH") -- Monitor scaling up
 hl.unbind("SUPER + ALT + SLASH") -- Monitor scaling down
 o.bind("SUPER + SLASH", "Passwords", { launch = "bitwarden-desktop" })
 
+o.bind("SUPER + SHIFT + S", "SSH manager", { tui = "sshm" })
+
 o.bind("CTRL + SHIFT + ESCAPE", "Activity", { tui = "btop" })
 
 -- Web apps -----------------------------------------------------------------
