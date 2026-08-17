@@ -26,7 +26,17 @@ BarWidget {
     "HDMI-A-1": [6, 7, 8, 9, 10]
   })
 
+  function otherMonitorConnected() {
+    var monitors = Hyprland.monitors.values
+    for (var i = 0; i < monitors.length; i++) {
+      var monitor = monitors[i]
+      if (monitor && String(monitor.name || "") !== root.screenName) return true
+    }
+    return false
+  }
+
   function persistentIds() {
+    if (!root.otherMonitorConnected()) return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     var ids = root.persistentByMonitor[root.screenName]
     return ids ? ids.slice() : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   }
