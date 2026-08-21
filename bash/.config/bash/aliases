@@ -15,5 +15,6 @@ alias dc='docker compose'
 
 alias dot='cd ~/dotfiles/'
 alias work='cd ~/Work/'
+alias conf='cd ~/.config/'
 alias om='cd ~/.local/share/omarchy/'
 
