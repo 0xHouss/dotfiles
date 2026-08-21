@@ -8,7 +8,7 @@ hl.config({
     border_size = 1,
 
     -- Change to niri-like side-scrolling layout.
-    layout = "scrolling",
+    -- layout = "scrolling",
   },
 })
 
@@ -25,12 +25,12 @@ hl.config({
 -- })
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#animations
-hl.config({
-  animations = {
-    -- Disable all animations.
-    enabled = false,
-  },
-})
+-- hl.config({
+--   animations = {
+--     -- Disable all animations.
+--     enabled = false,
+--   },
+-- })
 
 -- https://wiki.hypr.land/Configuring/Basics/Variables/#layout
 -- hl.config({
