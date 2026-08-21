@@ -50,11 +50,9 @@ hl.unbind("SUPER + O") -- Pop window out
 o.bind("SUPER + O", "Obsidian", { launch = "obsidian", focus = "^obsidian$" })
 
 -- Bitwarden, on the key monitor scaling used to hold.
-hl.unbind("SUPER + SLASH") -- Monitor scaling up
+hl.unbind("SUPER + SLASH")       -- Monitor scaling up
 hl.unbind("SUPER + ALT + SLASH") -- Monitor scaling down
 o.bind("SUPER + SLASH", "Passwords", { launch = "bitwarden-desktop" })
-
-o.bind("SUPER + SHIFT + S", "SSH manager", { tui = "sshm" })
 
 o.bind("CTRL + SHIFT + ESCAPE", "Activity", { tui = "btop" })
 
@@ -90,8 +88,7 @@ o.bind("SUPER + ALT + SPACE", "Omarchy menu", "omarchy-menu toggle")
 hl.unbind("SUPER + L") -- Toggle workspace layout
 o.bind("SUPER + L", "Lock screen", "omarchy-system-lock")
 
--- Media control without reaching for the media keys. F9 replaces the
--- voxtype push-to-talk binding; dictation is still on SUPER+CTRL+X.
+-- F9 replaces the voxtype push-to-talk binding; dictation is still on SUPER+CTRL+X.
 hl.unbind("F9")
 o.bind("F9", "Pause", "omarchy-shell media playPause", { locked = true })
 o.bind("ALT + N", "Next track", "omarchy-shell media next", { locked = true })
