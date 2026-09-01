@@ -27,7 +27,7 @@ is absent), then `~/.config/bash/rc`. That rc is the only fan-out point: it
 sources `envs`, `shell`, `aliases`, `functions`, `init`, and binds `inputrc`.
 Shell functions are one file per tool in `fns/`, all sourced by `functions`.
 
-**hyprland** — Hyprland configured in Lua (migrated from `.conf` in `a64ca5c`).
+**hypr** — Hyprland configured in Lua (migrated from `.conf` in `a64ca5c`).
 `hyprland.lua` is the entry point: it runs Omarchy's bootstrap, loads the
 defaults, then requires `monitors`, `input`, `bindings`, `looknfeel`,
 `autostart`. Two globals are in scope — `hl` for raw Hyprland and `o` for
@@ -41,11 +41,12 @@ first. Workspaces are pinned 1-5 to `eDP-1` and 6-10 to `HDMI-A-1`; that split
 has to agree with the per-monitor map in the `houss.workspaces` plugin, which
 only decides what the bar *draws*.
 
-**omarchy** — `omarchy-shell` plugins, all clones of first-party ones made with
-`omarchy-plugin-clone`. `omarchy/README.md` documents what each clone changes,
-why cloning was the route, and why `shell.json` is deliberately not stowed —
-read it before touching anything in this package. `.stow-local-ignore` keeps
-that README and `shell.json.reference` out of `$HOME`.
+**omarchy-plugins** — `omarchy-shell` plugins, all clones of first-party ones
+made with `omarchy-plugin-clone`. `omarchy-plugins/README.md` documents what
+each clone changes, why cloning was the route, and why `shell.json` is
+deliberately not stowed — read it before touching anything in this package.
+`.stow-local-ignore` keeps that README and `shell.json.reference` out of
+`$HOME`.
 
 **nvim** — lazy.nvim. `init.lua` requires `lua/config/`, which loads options,
 lazy, keymaps, autocmds, usercmds; plugin specs are one file per plugin in
@@ -73,7 +74,7 @@ in both. Changes take effect for newly launched apps after
 **applications** — `.desktop` entries for web apps, each launched through
 `omarchy-launch-webapp` with an icon from the sibling `icons/` folder. Entries
 here exist so apps appear in the launcher; the keybound ones are separately
-declared in `hyprland/.config/hypr/bindings.lua`.
+declared in `hypr/.config/hypr/bindings.lua`.
 
 **tmux**, **starship**, **user-dirs**, **hyprland-preview-share-picker** —
 single-file packages. The share-picker stylesheet path is relative to its own
@@ -81,7 +82,5 @@ config file and reaches into the current Omarchy theme.
 
 ## Not currently stowed
 
-`waybar/` and `backgrounds/` are tracked but not linked into `$HOME`. Waybar was
-replaced by the `omarchy-shell` bar; its config survives as the reference for
-what the bar used to do (and `houss.workspaces` exists to restore part of that
-behaviour). Restowing either is a deliberate act, not a repair.
+`backgrounds/` is tracked but not linked into `$HOME`. Restowing it is a
+deliberate act, not a repair.
