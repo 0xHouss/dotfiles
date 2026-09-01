@@ -9,7 +9,7 @@ do not state themselves — which packages are deliberately unstowed, which
 Omarchy plugins are clones of first-party ones, which values have to agree
 across two files. Read it before editing a package for the first time in a
 session, before adding a package, and before changing anything under
-`omarchy/` or `hyprland/`.
+`omarchy-plugins/` or `hypr/`.
 
 ## Editing
 
@@ -23,7 +23,8 @@ session, before adding a package, and before changing anything under
   package directory or a real directory holding per-file symlinks — both are
   normal.
 - Documentation and reference snapshots that must stay out of `$HOME` are
-  listed in the package's `.stow-local-ignore` (`omarchy/` has the example).
+  listed in the package's `.stow-local-ignore` (`omarchy-plugins/` has the
+  example).
 
 ## Commits
 
