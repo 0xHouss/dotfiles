@@ -7,6 +7,8 @@ alias t='tmux new -s "$(basename "$PWD")"'
 alias tl='tmux ls'
 alias n='nvim'
 alias cc='claude --dangerously-skip-permissions'
+alias sonnet='claude --dangerously-skip-permissions --model sonnet'
+alias opus='claude --dangerously-skip-permissions --model opus'
 
 unalias cy 2>/dev/null # remove omarchy default cy='codex ...'
 alias lg='lazygit'
