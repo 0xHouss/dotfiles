@@ -69,7 +69,7 @@ hl.unbind("SUPER + ALT + G") -- Move active window out of group
 o.bind("SUPER + ALT + G", "WhatsApp", { webapp = "https://web.whatsapp.com/", focus = true })
 
 o.bind("SUPER + M", "Music", { webapp = "https://music.youtube.com/", focus = true })
-o.bind("SUPER + Y", "YouTube", { webapp = "https://youtube.com/" })
+o.bind("SUPER + Y", "YouTube", { webapp = "https://youtube.com/", focus = true })
 
 hl.unbind("SUPER + X") -- Universal cut
 o.bind("SUPER + X", "X", { webapp = "https://x.com/" })
