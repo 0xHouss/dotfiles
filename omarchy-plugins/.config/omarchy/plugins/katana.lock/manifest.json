@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "katana.lock",
+  "name": "Katana Lock Screen",
+  "version": "1.0.0",
+  "author": "Omarchy",
+  "description": "Session lock with a looping katana video background.",
+  "kinds": [
+    "service"
+  ],
+  "keepLoaded": true,
+  "entryPoints": {
+    "service": "Service.qml"
+  },
+  "omarchy": {
+    "clonedFrom": "omarchy.lock"
+  }
+}
