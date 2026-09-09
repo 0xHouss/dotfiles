@@ -3,7 +3,7 @@
   "id": "houss.workspaces",
   "name": "My Workspaces",
   "version": "1.0.0",
-  "author": "Omarchy",
+  "author": "0xHouss",
   "description": "Workspace number indicators",
   "kinds": [
     "bar-widget"

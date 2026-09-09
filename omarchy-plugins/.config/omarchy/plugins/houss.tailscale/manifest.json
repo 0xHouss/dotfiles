@@ -3,7 +3,7 @@
   "id": "houss.tailscale",
   "name": "My Tailscale",
   "version": "1.0.0",
-  "author": "Omarchy",
+  "author": "0xHouss",
   "license": "MIT",
   "description": "Tailscale status, connection switching, machine browsing, and quick copy actions in the Omarchy bar.",
   "kinds": [
