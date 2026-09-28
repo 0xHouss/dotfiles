@@ -18,8 +18,11 @@ A clone of the first-party `omarchy.lock` plugin, created with
   `idleBlankTimer` that the stock plugin uses to run
   `omarchy-brightness-display off` five seconds in
 
-Cloning means upstream fixes to the lock screen do not arrive automatically;
-`omarchy-plugin-update` is how you pull them in.
+Cloning means upstream fixes to the lock screen do not arrive automatically,
+and `omarchy-plugin-update` cannot pull them in: it only updates plugins that
+are git checkouts. After an `omarchy` package upgrade, diff each clone against
+its source in `/usr/share/omarchy/shell/plugins/` and carry the changes over
+by hand.
 
 ## `houss.workspaces`
 
@@ -43,8 +46,8 @@ created with, so one identity belonging to two tailnets produces two rows
 labelled identically in the panel's CONNECTIONS section. The label now falls
 back to the tailnet unless a nickname was actually customised.
 
-Every other file is byte-identical to upstream, to keep
-`omarchy-plugin-update` merges clean.
+Every other file is byte-identical to upstream (last synced with
+Omarchy 4.0.4), so an upstream change to them can be copied over as is.
 
 ## shell.json is deliberately not stowed
 
