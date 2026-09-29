@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-NOTE_DIR="/home/houss/Documents/Notes/8 - Instant Notes"
+VAULT=$(jq -r '[.vaults[] | select(.open)][0].path // empty' ~/.config/obsidian/obsidian.json)
+[[ -n "$VAULT" ]] || { echo "No open Obsidian vault found" >&2; exit 1; }
+
+NOTE_DIR="${VAULT}/8 - Instant Notes"
 TODAY=$(date +"%Y-%m-%d")
 
 # Find the next sequential number for today
