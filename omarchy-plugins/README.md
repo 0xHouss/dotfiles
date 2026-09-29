@@ -49,6 +49,24 @@ back to the tailnet unless a nickname was actually customised.
 Every other file is byte-identical to upstream (last synced with
 Omarchy 4.0.4), so an upstream change to them can be copied over as is.
 
+## `houss.bluetooth`
+
+A clone of `omarchy.bluetooth` that fixes turning Bluetooth back on, on this
+Dell. `omarchy-bluetooth-power off` blocks every Bluetooth rfkill, including
+the `dell-bluetooth` platform switch, and the firmware answers by cutting
+power to the USB module. The adapter then leaves BlueZ, and the stock widget
+hides itself with no way back on (upstream basecamp/omarchy#7936).
+
+- `bluetooth-power` turns off by blocking only the `hci*` rfkills, so the
+  module stays on the bus and BlueZ just reports `Powered: no`. systemd-rfkill
+  saves hci0's block under its own path, so "off" still survives a reboot.
+  On still goes through `omarchy-bluetooth-power on`.
+- `Panel.qml` treats a missing adapter as "off" instead of "no hardware": the
+  widget and switch stay visible and the toggle sends `on`. That covers a
+  type-wide block set by anything else.
+
+`Model.js` is byte-identical to upstream (last synced with Omarchy 4.0.4).
+
 ## shell.json is deliberately not stowed
 
 `omarchy-shell-config` rewrites `~/.config/omarchy/shell.json` with

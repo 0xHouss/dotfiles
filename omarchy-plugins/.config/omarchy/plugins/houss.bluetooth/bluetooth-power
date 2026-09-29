@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Usage: bluetooth-power <on|off>
+#
+# `omarchy-bluetooth-power off` runs `rfkill block bluetooth`, which blocks every
+# Bluetooth rfkill at once, including the dell-bluetooth platform switch. The
+# Dell firmware answers that by cutting power to the USB module, so hci0 leaves
+# the bus and BlueZ drops the adapter. Quickshell then often misses the adapter
+# powering up again after the next unblock, and the panel sticks on "Turned Off".
+#
+# Blocking only the adapters' own hci* switches leaves the module on the bus:
+# BlueZ keeps the adapter and just reports Powered: no. systemd-rfkill saves
+# hci0's state under its own path, so "off" still survives a reboot.
+#
+# On is unchanged. The stock helper's type-wide unblock also clears a platform
+# block that something else set.
+
+case "${1:-}" in
+  on)
+    exec omarchy-bluetooth-power on
+    ;;
+  off)
+    # No hci switch means the adapter is already gone, so there is nothing to
+    # turn off. Never fall back to the type-wide block: that is the one that
+    # powers the module off the bus.
+    for id in $(rfkill -n -o ID,DEVICE | awk '$2 ~ /^hci/ {print $1}'); do
+      rfkill block "$id"
+    done
+    ;;
+  *)
+    echo "Usage: bluetooth-power <on|off>" >&2
+    exit 1
+    ;;
+esac
