@@ -7,8 +7,6 @@ alias t='tmux new -s "$(basename "$PWD")"'
 alias tl='tmux ls'
 alias n='nvim'
 alias cc='claude --dangerously-skip-permissions'
-alias sonnet='claude --dangerously-skip-permissions --model sonnet'
-alias opus='claude --dangerously-skip-permissions --model opus'
 
 unalias cy 2>/dev/null # remove omarchy default cy='codex ...'
 alias lg='lazygit'
@@ -17,6 +15,6 @@ alias dc='docker compose'
 
 alias dot='cd ~/dotfiles/'
 alias work='cd ~/Work/'
+alias fleet='cd ~/Projects/fleet/'
 alias conf='cd ~/.config/'
 alias om='cd ~/.local/share/omarchy/'
-
