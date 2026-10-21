@@ -3,7 +3,7 @@
   "id": "houss.menu",
   "name": "My Omarchy menu",
   "version": "1.0.0",
-  "author": "Omarchy",
+  "author": "0xHouss",
   "description": "Quickshell-powered Omarchy command menu",
   "kinds": [
     "menu",
