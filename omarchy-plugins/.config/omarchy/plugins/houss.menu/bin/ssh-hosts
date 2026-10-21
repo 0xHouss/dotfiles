@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# One line per concrete Host in ~/.ssh/config (wildcard patterns skipped),
+# in the menu provider format: label<TAB>value<TAB>current.
+config=${SSH_CONFIG:-$HOME/.ssh/config}
+[[ -r $config ]] || exit 0
+awk 'tolower($1) == "host" { for (i = 2; i <= NF; i++) if ($i !~ /[*?!]/ && !seen[$i]++) printf "%s\t%s\t\n", $i, $i }' "$config"
