@@ -78,7 +78,15 @@ Item {
 
   // Shared application engine (entries, hidden filters, icons, launch,
   // removal), owned by the shell and also used by the standalone launcher.
-  readonly property var appLibrary: root.shell ? root.shell.appLibrary : null
+  // The host hands a third-party menu no appLibrary on this Omarchy, so the
+  // Apps submenu would be empty. Use the host's when it is there and
+  // otherwise this plugin's own copy (AppLibrary.qml / AppSearch.js).
+  readonly property var appLibrary: root.shell && root.shell.appLibrary ? root.shell.appLibrary : localAppLibrary
+
+  AppLibrary {
+    id: localAppLibrary
+    omarchyPath: root.omarchyPath
+  }
   property bool deleteConfirmOpen: false
   property var deleteTarget: null
   onOpenedChanged: if (!opened) { deleteConfirmOpen = false; deleteTarget = null }
