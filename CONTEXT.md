@@ -46,7 +46,9 @@ made with `omarchy-plugin-clone`. `omarchy-plugins/README.md` documents what
 each clone changes, why cloning was the route, and why `shell.json` is
 deliberately not stowed — read it before touching anything in this package.
 `.stow-local-ignore` keeps that README and `shell.json.reference` out of
-`$HOME`.
+`$HOME`. `houss.menu` also reads `~/.config/omarchy/extensions/omarchy-menu.local.jsonc`,
+a real file outside the repo merged after the tracked `omarchy-menu.jsonc`:
+personal entries (games, private hosts) go there, never in the tracked file.
 
 **nvim** — lazy.nvim. `init.lua` requires `lua/config/`, which loads options,
 lazy, keymaps, autocmds, usercmds; plugin specs are one file per plugin in
