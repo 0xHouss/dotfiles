@@ -52,6 +52,11 @@ Item {
   property string userMenuPath: Quickshell.env("HOME") + "/.config/omarchy/extensions/omarchy-menu.jsonc"
   property var defaultMenuItems: []
   property var userMenuItems: []
+  // Entries too personal for the dotfiles repo. The file sits beside the
+  // stowed extension as a real file, so git never sees it; it is merged last
+  // and can add to or override anything above.
+  property string localMenuPath: Quickshell.env("HOME") + "/.config/omarchy/extensions/omarchy-menu.local.jsonc"
+  property var localMenuItems: []
   property bool opened: false
   property string mode: "menu"
   readonly property bool dmenuActive: mode === "select" || mode === "input"
@@ -253,7 +258,7 @@ Item {
   // on a per-key basis (so the user can tweak label/icon/action without
   // re-declaring the whole row).
   function rebuildItemsFromSources() {
-    var mergedMenu = MenuModel.mergeMenuSources(root.defaultMenuItems, root.userMenuItems)
+    var mergedMenu = MenuModel.mergeMenuSources(root.defaultMenuItems, root.userMenuItems.concat(root.localMenuItems))
     root.providerRevision += 1
     root.providersLoaded = ({})
     root.providerQueue = []
@@ -961,6 +966,16 @@ Item {
     printErrors: false
     onLoaded: { root.userMenuItems = root.parseMenuJsonc(text()); root.rebuildItemsFromSources() }
     onLoadFailed: { root.userMenuItems = []; root.rebuildItemsFromSources() }
+    onFileChanged: reload()
+  }
+
+  FileView {
+    id: localMenuFile
+    path: root.localMenuPath
+    watchChanges: true
+    printErrors: false
+    onLoaded: { root.localMenuItems = root.parseMenuJsonc(text()); root.rebuildItemsFromSources() }
+    onLoadFailed: { root.localMenuItems = []; root.rebuildItemsFromSources() }
     onFileChanged: reload()
   }
 
