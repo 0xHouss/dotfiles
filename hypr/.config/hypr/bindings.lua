@@ -41,22 +41,23 @@ o.bind("SUPER + SHIFT + E", "Nautilus", { launch = "nautilus --new-window" })
 -- Instant note replaces the editor on this key; the editor stays unbound.
 hl.unbind("SUPER + SHIFT + N")
 o.bind("SUPER + SHIFT + N", "Instant Note", {
-  tui = (os.getenv("HOME") or "") .. "/.local/bin/create-instant-note",
+	tui = (os.getenv("HOME") or "") .. "/.local/bin/create-instant-note",
 })
 
 o.bind("SUPER + D", "Discord", { launch = "vesktop", focus = "^vesktop$" })
 
 hl.unbind("SUPER + O") -- Pop window out
-o.bind("SUPER + O", "Obsidian", { launch = "obsidian", focus = "^obsidian$" })
+o.bind("SUPER + O", "Obsidian", { launch = "obsidian", focus = "^md\\.obsidian\\.Obsidian$" })
 
 -- Bitwarden, on the key monitor scaling used to hold.
-hl.unbind("SUPER + SLASH")       -- Monitor scaling up
+hl.unbind("SUPER + SLASH") -- Monitor scaling up
 hl.unbind("SUPER + ALT + SLASH") -- Monitor scaling down
 o.bind("SUPER + SLASH", "Passwords", { launch = "bitwarden-desktop" })
 
 o.bind("CTRL + SHIFT + ESCAPE", "Activity", { tui = "btop" })
 
 -- Web apps -----------------------------------------------------------------
+hl.unbind("SUPER + A") -- Select all
 o.bind("SUPER + A", "Claude", { webapp = "https://claude.ai", focus = true })
 
 hl.unbind("SUPER + C") -- Universal copy
@@ -68,6 +69,7 @@ o.bind("SUPER + G", "Email", { webapp = "https://mail.notion.so/", focus = true 
 hl.unbind("SUPER + ALT + G") -- Move active window out of group
 o.bind("SUPER + ALT + G", "WhatsApp", { webapp = "https://web.whatsapp.com/", focus = true })
 
+hl.unbind("SUPER + M") -- Minimize window to the dock
 o.bind("SUPER + M", "Music", { webapp = "https://music.youtube.com/", focus = true })
 o.bind("SUPER + Y", "YouTube", { webapp = "https://youtube.com/", focus = true })
 
@@ -84,3 +86,5 @@ hl.unbind("F9")
 o.bind("F9", "Pause", "omarchy-shell media playPause", { locked = true })
 o.bind("ALT + N", "Next track", "omarchy-shell media next", { locked = true })
 o.bind("ALT + P", "Previous track", "omarchy-shell media previous", { locked = true })
+
+o.bind("SUPER + R", "File Search", "vicinae cmd launch files:search")
