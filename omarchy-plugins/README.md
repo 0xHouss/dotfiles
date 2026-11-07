@@ -43,11 +43,33 @@ old waybar behaviour:
 - workspaces 1-10 are always drawn, occupied or not
 - workspace 10 is labelled `10`, not `0`
 - each bar shows only its own monitor's set — eDP-1 gets 1-5, HDMI-A-1 gets
-  6-10 — like waybar's `persistent-workspaces` with `all-outputs: false`
+  6-10 — like waybar's `persistent-workspaces` with `all-outputs: false`; with
+  only one monitor connected it shows all ten
+- workspace ids stay global, so a click (or Super + N) means workspace N
 
 The per-monitor map is in `Workspaces.qml` and has to agree with the
 `workspace_rule` pinning in `hypr/hyprland.lua`, which is what actually sends
 new workspaces to the right screen. Unlisted monitors fall back to all ten.
+
+Last synced with Omarchy 4.5.0, which brought over:
+
+- scrolling on the widget steps through the bar's workspaces, holding at
+  either end
+- each bar marks the workspace its own monitor shows, with that workspace's
+  layout as the glyph (`󱓻` tiling, `󰝥` scrolling, `󰔶` floating); clicking it
+  cycles the layout like Super + L
+- the `omarchy.workspaces refresh` IPC target that the layout scripts call,
+  relayed to the widget on every monitor's bar
+
+Deliberately not taken: 4.5's per-monitor numbering (blocks of ten per
+monitor, slots labelled 1-10, the `monitor-workspaces` state file, visiting
+"guest" workspaces, `o.workspaces.focus(slot, monitor)`). `hypr/hyprland.lua`
+overrides `o.workspaces` so the ids stay 1-10.
+
+Edits to the widget are not hot-reloaded. The shell's plugin watcher does
+not follow the stow symlink, and even `omarchy-shell -q shell rescanPlugins`
+keeps serving the live bar widget's already-compiled code. A change takes
+effect at the next omarchy-shell restart.
 
 ## `houss.tailscale`
 

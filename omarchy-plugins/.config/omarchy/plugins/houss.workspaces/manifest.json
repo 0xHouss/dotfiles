@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "houss.workspaces",
   "name": "My Workspaces",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "0xHouss",
   "description": "Workspace number indicators",
   "kinds": [
