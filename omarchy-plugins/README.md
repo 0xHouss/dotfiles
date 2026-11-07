@@ -16,7 +16,18 @@ A clone of the first-party `omarchy.lock` plugin, created with
   survives being moved or restowed
 - keeps the display lit for the whole lock, by never arming the
   `idleBlankTimer` that the stock plugin uses to run
-  `omarchy-brightness-display off` five seconds in
+  `omarchy-brightness-display off` five seconds in (fifteen after a resume);
+  `armBlankTimer(delayMs)` only stops the timer. With no blank, the
+  fingerprint reader is never paused either
+
+`Service.qml` differs from upstream only by `armBlankTimer`, and `LockView.qml`
+only by the additions above plus the input field's `innerColor` and
+`radius: 8`. `FingerprintModel.js` is byte-identical to upstream (last synced
+with Omarchy 4.5.0) and must sit beside `Service.qml`, which imports it
+relatively. Upstream's `poster.sh` is not copied: `Service.qml` runs it from
+`$OMARCHY_PATH/shell/plugins/lock/`. The manifest drops upstream's
+`capabilities`, which only first-party plugins get; the clone inherits them
+through `clonedFrom`.
 
 Cloning means upstream fixes to the lock screen do not arrive automatically,
 and `omarchy-plugin-update` cannot pull them in: it only updates plugins that
