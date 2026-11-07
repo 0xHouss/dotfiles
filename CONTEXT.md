@@ -64,6 +64,13 @@ plugin. `lazy-lock.json` is committed, so plugin versions move only in explicit
 "update plugin lockfile" commits. `lua/config/remote_clipboard.lua` routes yanks
 through OSC 52 so copies survive tmux and SSH.
 
+**nvim.lazyvim** — the stowed Neovim config, LazyVim on Omarchy's defaults.
+`lua/plugins/theme.lua` is a real file that `dofile`s
+`~/.local/state/omarchy/current/theme/neovim.lua`. Omarchy's
+`omarchy-nvim-setup`/`-refresh` write it as a relative symlink instead, which
+resolves inside this repo (`~/.config/nvim` is one folded link) and loads no
+theme; if one of them has run, restore the file from git.
+
 **yazi** — plugins are vendored into `plugins/` with versions pinned in
 `package.toml`. `jumplist.yazi` and `undo.yazi` are gitignored: they are
 symlinks to local dev clones in `~/Work/yazi-plugins`.
