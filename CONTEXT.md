@@ -39,7 +39,12 @@ bindings, which is what frees bare `SUPER` for the apps in `bindings.lua`; core
 window-manager bindings stay, so taking one of those keys means `hl.unbind`
 first. Workspaces are pinned 1-5 to `eDP-1` and 6-10 to `HDMI-A-1`; that split
 has to agree with the per-monitor map in the `houss.workspaces` plugin, which
-only decides what the bar *draws*.
+only decides what the bar *draws*. Omarchy 4.5 made workspaces per monitor
+(blocks of ten, `default/hypr/monitor-workspaces.lua`, no off switch);
+`hyprland.lua` undoes that by stubbing `o.workspaces.reconcile`, replacing the
+other `o.workspaces` functions and rebinding the number keys. It leans on that
+module's internals, so after an Omarchy upgrade check that `hyprctl workspaces`
+still shows 6-10 on `HDMI-A-1` and nothing numbered above 10.
 
 **omarchy-plugins** — `omarchy-shell` plugins, all clones of first-party ones
 made with `omarchy-plugin-clone`. `omarchy-plugins/README.md` documents what
