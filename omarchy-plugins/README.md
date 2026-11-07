@@ -58,7 +58,9 @@ labelled identically in the panel's CONNECTIONS section. The label now falls
 back to the tailnet unless a nickname was actually customised.
 
 Every other file is byte-identical to upstream (last synced with
-Omarchy 4.0.4), so an upstream change to them can be copied over as is.
+Omarchy 4.5.0), so an upstream change to them can be copied over as is.
+Upstream's `accountLabel` takes a translator argument since 4.5; the fork
+keeps it and only changes the fallback order.
 
 ## `houss.bluetooth`
 
