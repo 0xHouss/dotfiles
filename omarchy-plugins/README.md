@@ -78,6 +78,45 @@ hides itself with no way back on (upstream basecamp/omarchy#7936).
 
 `Model.js` is byte-identical to upstream (last synced with Omarchy 4.0.4).
 
+## `houss.menu`
+
+A clone of `omarchy.menu`, the Omarchy command menu. Since it declares
+`clonedFrom: omarchy.menu`, `omarchy-menu` and every other call that targets
+`omarchy.menu` open it instead of the stock one. Only `Menu.qml` changes, in
+two ways:
+
+- an `ssh` provider lists every concrete `Host` in `~/.ssh/config` (wildcard
+  patterns skipped) through `bin/ssh-hosts`, and picking one opens a terminal
+  running `bin/ssh-connect <host>`. The script sources `~/.config/bash/envs`
+  when `SSH_AUTH_SOCK` is unset, because the shell's environment lacks the
+  agent socket that the bash config exports, and it keeps the window open when
+  ssh fails. The submenu itself is the `ssh` row in the tracked
+  `extensions/omarchy-menu.jsonc`. The scripts are found through the
+  manifest's `__sourceDir`, which the host passes to third-party plugins.
+- it reads a second extension file,
+  `~/.config/omarchy/extensions/omarchy-menu.local.jsonc`, merged after the
+  tracked `omarchy-menu.jsonc` so its ids win. That file is a real file
+  outside the repo, for personal entries (games, private hosts). It is
+  handled like upstream's user file: the previous rows are kept while a write
+  is half-finished, a missing file counts as loaded, the guard batch waits
+  until all three menu files have loaded, and `refresh()` rereads it.
+
+The fork used to carry its own `AppLibrary.qml` and `AppSearch.js` for the
+Apps rows. They were dropped in the 4.5 sync because the host gives every
+plugin whose manifest lists the `menu` kind an app library
+(`pluginAppLibraryFor` in `shell/shell.qml`), and nothing gates it on trust.
+
+Edits to the menu are not hot-reloaded, for the same reason as
+`houss.workspaces`: the menu is `keepLoaded`, and
+`omarchy-shell shell rescanPlugins` rebuilds it from the already-compiled
+component. A change takes effect at the next omarchy-shell restart.
+
+To resync after an upgrade, copy upstream's
+`/usr/share/omarchy/shell/plugins/menu/` and put back the two changes above:
+`BarWidget.qml` and `MenuModel.js` are byte-identical to upstream, and the
+manifest differs only by id, name, author and `clonedFrom`. Last synced with
+Omarchy 4.5.0.
+
 ## shell.json is deliberately not stowed
 
 `omarchy-shell-config` rewrites `~/.config/omarchy/shell.json` with
