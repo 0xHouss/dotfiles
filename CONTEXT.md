@@ -25,6 +25,8 @@ improving the base. Two consequences worth holding onto:
 to `/usr/share/omarchy` when `/etc/omarchy.conf`, written by `omarchy-dev-link`,
 is absent), then `~/.config/bash/rc`. That rc is the only fan-out point: it
 sources `envs`, `shell`, `aliases`, `functions`, `init`, and binds `inputrc`.
+`aliases.local`, sourced after `aliases` when present, is gitignored: aliases
+that carry private names or paths go there, never in `aliases`.
 Shell functions are one file per tool in `fns/`, all sourced by `functions`.
 
 **hypr** — Hyprland configured in Lua (migrated from `.conf` in `a64ca5c`).
