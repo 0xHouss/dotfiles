@@ -78,7 +78,8 @@ hides itself with no way back on (upstream basecamp/omarchy#7936).
   widget and switch stay visible and the toggle sends `on`. That covers a
   type-wide block set by anything else.
 
-`Model.js` is byte-identical to upstream (last synced with Omarchy 4.0.4).
+`Model.js` is byte-identical to upstream, and `Panel.qml` differs from it only
+by the change above (last synced with Omarchy 4.5.0).
 
 ## `houss.menu`
 
