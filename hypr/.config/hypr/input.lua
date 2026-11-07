@@ -9,6 +9,10 @@ hl.config({
     -- kb_layout = "fr",
     --   kb_options = "compose:caps,shift:both_capslock_cancel,grp:alts_toggle",
     --
+    -- Caps Lock as the compose key, both Shifts toggle Caps Lock: Omarchy's
+    -- default before 4.5, which moved compose to Shift + Caps Lock.
+    kb_options = "compose:caps,shift:both_capslock_cancel",
+    --
     --   -- Use a specific keyboard variant if needed (e.g. intl for international keyboards).
     --   kb_variant = "intl",
     --
