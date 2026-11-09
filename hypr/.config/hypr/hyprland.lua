@@ -41,44 +41,59 @@ require("default.hypr.toggles")
 o.workspaces.reconcile = function() end
 
 o.workspaces.focus = function(workspace)
-  return hl.dsp.focus({ workspace = tostring(workspace) })
+	return hl.dsp.focus({ workspace = tostring(workspace) })
 end
 
 o.workspaces.move_window = function(workspace, follow)
-  return hl.dsp.window.move({ workspace = tostring(workspace), follow = follow ~= false })
+	return hl.dsp.window.move({ workspace = tostring(workspace), follow = follow ~= false })
 end
 
 o.workspaces.move_to_monitor = function(direction)
-  return function()
-    -- Hyprland reports a move toward no monitor as an error on screen.
-    local target = hl.get_monitor(direction)
-    if target then
-      hl.dispatch(hl.dsp.workspace.move({ monitor = target.name }))
-    end
-  end
+	return function()
+		-- Hyprland reports a move toward no monitor as an error on screen.
+		local target = hl.get_monitor(direction)
+		if target then
+			hl.dispatch(hl.dsp.workspace.move({ monitor = target.name }))
+		end
+	end
 end
 
 -- The default number keys were bound to per-monitor slots when Omarchy's
 -- bindings loaded, so replacing the functions above doesn't reach them.
 for workspace = 1, 10 do
-  local key = "code:" .. tostring(workspace + 9)
-  o.rebind("SUPER + " .. key, "Switch to workspace " .. workspace, o.workspaces.focus(workspace))
-  o.rebind("SUPER + SHIFT + " .. key, "Move window to workspace " .. workspace, o.workspaces.move_window(workspace))
-  o.rebind("SUPER + SHIFT + ALT + " .. key, "Move window silently to workspace " .. workspace, o.workspaces.move_window(workspace, false))
+	local key = "code:" .. tostring(workspace + 9)
+	o.rebind("SUPER + " .. key, "Switch to workspace " .. workspace, o.workspaces.focus(workspace))
+	o.rebind("SUPER + SHIFT + " .. key, "Move window to workspace " .. workspace, o.workspaces.move_window(workspace))
+	o.rebind(
+		"SUPER + SHIFT + ALT + " .. key,
+		"Move window silently to workspace " .. workspace,
+		o.workspaces.move_window(workspace, false)
+	)
 end
 
 for direction, name in pairs({ l = "left", r = "right", u = "up", d = "down" }) do
-  o.rebind("SUPER + SHIFT + ALT + " .. name:upper(), "Move workspace to " .. name .. " monitor", o.workspaces.move_to_monitor(direction))
+	o.rebind(
+		"SUPER + SHIFT + ALT + " .. name:upper(),
+		"Move workspace to " .. name .. " monitor",
+		o.workspaces.move_to_monitor(direction)
+	)
 end
 
 for ws = 1, 5 do
-  hl.workspace_rule({ workspace = tostring(ws), monitor = "eDP-1", default = true })
+	hl.workspace_rule({ workspace = tostring(ws), monitor = "eDP-1", default = true })
 end
 
 for ws = 6, 10 do
-  hl.workspace_rule({ workspace = tostring(ws), monitor = "HDMI-A-1", default = true })
+	hl.workspace_rule({ workspace = tostring(ws), monitor = "HDMI-A-1", default = true })
+end
+
+-- The app workspaces live on the external display too. No default = true, so
+-- they don't compete with 6-10 for being that monitor's starting workspace.
+for ws = 11, 13 do
+	hl.workspace_rule({ workspace = tostring(ws), monitor = "HDMI-A-1" })
 end
 
 -- Send specific apps to their own workspace.
-o.window("^(zen)$", { workspace = "6" })
-o.window("^(vesktop)$", { workspace = "7" })
+o.window("^(zen)$", { workspace = "11" })
+o.window("^(vesktop)$", { workspace = "12" })
+o.window("^(chrome-music.youtube.com__-Default)$", { workspace = "13" })
