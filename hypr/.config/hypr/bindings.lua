@@ -64,7 +64,11 @@ hl.unbind("SUPER + C") -- Universal copy
 o.bind("SUPER + C", "Calendar", { webapp = "https://calendar.notion.so/", focus = true })
 
 hl.unbind("SUPER + G") -- Toggle window grouping
-o.bind("SUPER + G", "Email", { webapp = "https://mail.notion.so/", focus = true })
+o.bind(
+	"SUPER + G",
+	"Email",
+	{ launch = "omarchy-launch-webapp https://mail.google.com/mail/u/2", focus = "chrome-mail\\.google\\.com.*" }
+)
 
 hl.unbind("SUPER + ALT + G") -- Move active window out of group
 o.bind("SUPER + ALT + G", "WhatsApp", { webapp = "https://web.whatsapp.com/", focus = true })
