@@ -88,3 +88,6 @@ o.bind("ALT + N", "Next track", "omarchy-shell media next", { locked = true })
 o.bind("ALT + P", "Previous track", "omarchy-shell media previous", { locked = true })
 
 o.bind("SUPER + R", "File Search", "vicinae cmd launch files:search")
+
+-- Screen annotation (ZoomIt-style): press to draw, press again to close.
+o.bind("CTRL + grave", "Annotate screen", "pkill -x wayscriber || wayscriber --active")
